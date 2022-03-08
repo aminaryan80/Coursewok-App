@@ -1,6 +1,7 @@
-package edu.sharif.courseworkapp.data;
+package edu.sharif.courseworkapp.data.login;
 
-import edu.sharif.courseworkapp.data.model.user.User;
+import edu.sharif.courseworkapp.data.Result;
+import edu.sharif.courseworkapp.model.user.User;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class LoginDataSource {
             // TODO: handle loggedInUser authentication
             User fakeUser =
                     new User(
-                            java.util.UUID.randomUUID().toString(),
+                            username,
                             "Jane",
                             "Doe",
                             password);

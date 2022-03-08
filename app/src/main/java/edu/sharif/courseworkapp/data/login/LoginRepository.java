@@ -1,6 +1,7 @@
-package edu.sharif.courseworkapp.data;
+package edu.sharif.courseworkapp.data.login;
 
-import edu.sharif.courseworkapp.data.model.user.User;
+import edu.sharif.courseworkapp.data.Result;
+import edu.sharif.courseworkapp.model.user.User;
 
 /**
  * Class that requests authentication and user information from the remote data source and

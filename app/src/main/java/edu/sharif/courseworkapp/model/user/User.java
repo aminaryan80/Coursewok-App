@@ -1,24 +1,32 @@
-package edu.sharif.courseworkapp.data.model.user;
+package edu.sharif.courseworkapp.model.user;
+
+import java.util.UUID;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
 public class User {
 
-    private final String userId;
+    private final String id;
+    private String username;
     private String firstname;
     private String lastname;
     private String password;
 
-    public User(String userId, String firstname, String lastname, String password) {
-        this.userId = userId;
+    public User(String username, String firstname, String lastname, String password) {
+        this.id = UUID.randomUUID().toString().substring(0, 4);
+        this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getFirstname() {
@@ -31,6 +39,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setFirstname(String firstname) {

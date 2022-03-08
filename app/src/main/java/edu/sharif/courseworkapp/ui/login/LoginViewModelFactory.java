@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import edu.sharif.courseworkapp.data.LoginDataSource;
-import edu.sharif.courseworkapp.data.LoginRepository;
+import edu.sharif.courseworkapp.data.login.LoginDataSource;
+import edu.sharif.courseworkapp.data.login.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import edu.sharif.courseworkapp.data.LoginRepository;
+import edu.sharif.courseworkapp.data.login.LoginRepository;
 import edu.sharif.courseworkapp.data.Result;
-import edu.sharif.courseworkapp.data.model.user.User;
+import edu.sharif.courseworkapp.model.user.User;
 import edu.sharif.courseworkapp.R;
 
 public class LoginViewModel extends ViewModel {
