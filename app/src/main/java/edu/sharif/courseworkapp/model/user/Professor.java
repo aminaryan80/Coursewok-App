@@ -5,10 +5,11 @@ public class Professor extends User {
     private String university;
 
     public Professor(
-            String userId, String firstname, String lastname, String password, String university
+            String username, String password, String firstname, String lastname, String university
     ) {
-        super(userId, firstname, lastname, password);
+        super(username, password, firstname, lastname);
         this.university = university;
+        this.type = User.PROFESSOR;
     }
 
     public String getUniversity() {

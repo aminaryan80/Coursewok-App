@@ -5,10 +5,11 @@ public class Student extends User {
     private String studentNumber;
 
     public Student(
-            String userId, String firstname, String lastname, String password, String studentNumber
+            String username, String password, String firstname, String lastname, String studentNumber
     ) {
-        super(userId, firstname, lastname, password);
+        super(username, password, firstname, lastname);
         this.studentNumber = studentNumber;
+        this.type = User.STUDENT;
     }
 
     public String getStudentNumber() {
