@@ -67,6 +67,10 @@ public class User {
         return firstname + " " + lastname;
     }
 
+    public boolean isStudent() {
+        return this.type.equals(STUDENT);
+    }
+
     public static Professor getProfessorByUsername(String username) {
         return (Professor) getUserByUsername(username, User.PROFESSOR);
     }

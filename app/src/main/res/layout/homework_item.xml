@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/idHomeworkName"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_margin="@dimen/homework_item_margin"
+        android:textColor="@color/black"
+        android:textSize="@dimen/homework_name_size" />
+
+    <TextView
+        android:id="@+id/idQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="@dimen/homework_item_margin"
+        android:layout_marginEnd="@dimen/course_item_margin"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/homework_desc_size"
+        app:drawableStartCompat="@drawable/school" />
+
+</LinearLayout>

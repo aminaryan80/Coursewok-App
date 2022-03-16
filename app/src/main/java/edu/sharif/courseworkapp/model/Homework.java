@@ -2,17 +2,25 @@ package edu.sharif.courseworkapp.model;
 
 import java.util.UUID;
 
-public class HomeWork {
+public class Homework {
 
     private final String id;
     private final String courseId;
     private final String question;
     private String name;
 
-    public HomeWork(String name, String courseId, String question) {
+    public Homework(String name, String courseId, String question) {
         this.id = UUID.randomUUID().toString().substring(0, 4);
         this.name = name;
         this.courseId = courseId;
+        this.question = question;
+    }
+
+    // TODO: delete
+    public Homework(String name, String question) {
+        this.id = UUID.randomUUID().toString().substring(0, 4);
+        this.name = name;
+        this.courseId = "0";
         this.question = question;
     }
 

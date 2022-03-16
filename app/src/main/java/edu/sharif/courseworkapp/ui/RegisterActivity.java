@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.controller.RegisterHandler;
 import edu.sharif.courseworkapp.model.user.User;
+import edu.sharif.courseworkapp.ui.panel.ProfessorPanelActivity;
+import edu.sharif.courseworkapp.ui.panel.StudentPanelActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -57,6 +60,19 @@ public class RegisterActivity extends AppCompatActivity {
                 a = "null";
             }
             Toast.makeText(RegisterActivity.this, a, Toast.LENGTH_SHORT).show();
+            handleNewActivity(user);
         });
+    }
+
+    private void handleNewActivity(User user) {
+        Intent intent;
+        if (user.isStudent()) {
+            intent = new Intent(RegisterActivity.this,
+                    StudentPanelActivity.class);
+        } else {
+            intent = new Intent(RegisterActivity.this,
+                    ProfessorPanelActivity.class);
+        }
+        startActivity(intent);
     }
 }

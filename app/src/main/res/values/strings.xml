@@ -16,4 +16,7 @@
     <string name="student">Student</string>
     <string name="student_number">student number</string>
     <string name="university">university</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_other_courses">Other courses</string>
+    <string name="course_img">Course Image</string>
 </resources>

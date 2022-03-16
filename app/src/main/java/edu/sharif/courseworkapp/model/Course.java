@@ -3,6 +3,8 @@ package edu.sharif.courseworkapp.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import edu.sharif.courseworkapp.model.user.User;
+
 public class Course {
 
     private final String id;
@@ -17,6 +19,13 @@ public class Course {
         this.studentIds = studentIds;
     }
 
+    public Course(String courseName, String professorId) {
+        this.id = UUID.randomUUID().toString().substring(0, 4);
+        this.name = courseName;
+        this.professorId = professorId;
+        this.studentIds = new ArrayList<>();
+    }
+
     public String getId() {
         return id;
     }
@@ -27,6 +36,10 @@ public class Course {
 
     public String getProfessorId() {
         return professorId;
+    }
+
+    public String getProfessorName() {
+        return User.getProfessorByUsername(professorId).getDisplayName();
     }
 
     public ArrayList<String> getStudents() {
