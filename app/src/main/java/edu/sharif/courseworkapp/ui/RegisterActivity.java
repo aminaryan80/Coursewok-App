@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -18,45 +19,66 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
+        String username = "";
+        String password = "";
 
-        TextView username = findViewById(R.id.username);
-        TextView password = findViewById(R.id.password);
-        TextView firstname = findViewById(R.id.firstname);
-        TextView lastname = findViewById(R.id.lastname);
-        TextView extra = findViewById(R.id.extra);
+        Intent intent = getIntent();
+        if (intent.hasExtra("username")) {
+            username = intent.getStringExtra("username");
+        }
+        if (intent.hasExtra("password")) {
+            password = intent.getStringExtra("password");
+        }
+
+        TextView usernameTextView = findViewById(R.id.username);
+        TextView passwordTextView = findViewById(R.id.password);
+        TextView firstnameTextView = findViewById(R.id.firstname);
+        TextView lastnameTextView = findViewById(R.id.lastname);
+        TextView extraTextView = findViewById(R.id.extra);
         RadioGroup radio_group = findViewById(R.id.radio_group);
 
         Button login_button = findViewById(R.id.login_button);
+        Button register_button = findViewById(R.id.register_button);
+
+        usernameTextView.setText(username);
+        passwordTextView.setText(password);
 
         radio_group.setOnCheckedChangeListener((radioGroup, checkedId) -> {
             RadioButton radioButton = findViewById(checkedId);
             String string = radioButton.getText().toString();
             if (string.equals("Student")) {
-                extra.setHint(R.string.student_number);
+                extraTextView.setHint(R.string.student_number);
             } else {
-                extra.setHint(R.string.university);
+                extraTextView.setHint(R.string.university);
             }
 
         });
 
-        login_button.setOnClickListener(v -> {
+        register_button.setOnClickListener(v -> {
+            int selectedId = radio_group.getCheckedRadioButtonId();
+            RadioButton radioButton = (RadioButton) radio_group.findViewById(selectedId);
+            boolean isStudent = radioButton.getText().toString().equals("Student");
             RegisterHandler registerHandler = new RegisterHandler(
-                    RegisterActivity.this,
-                    username.getText().toString(),
-                    password.getText().toString(),
-                    firstname.getText().toString(),
-                    lastname.getText().toString(),
-                    extra.getText().toString(),
-                    true
+                    usernameTextView.getText().toString(),
+                    passwordTextView.getText().toString(),
+                    firstnameTextView.getText().toString(),
+                    lastnameTextView.getText().toString(),
+                    extraTextView.getText().toString(),
+                    isStudent
             );
             User user = registerHandler.register();
-            String a = user.getDisplayName();
-            if (a == null) {
-                a = "null";
-            }
-            Toast.makeText(RegisterActivity.this, a, Toast.LENGTH_SHORT).show();
+            String userDisplayName = user.getDisplayName();
+            String response = userDisplayName + " Registered Successfully.";
+            Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_SHORT).show();
+        });
+
+        login_button.setOnClickListener(view -> {
+            Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+            myIntent.putExtra("username", usernameTextView.getText().toString());
+            myIntent.putExtra("password", passwordTextView.getText().toString());
+            RegisterActivity.this.startActivity(myIntent);
         });
     }
 }
