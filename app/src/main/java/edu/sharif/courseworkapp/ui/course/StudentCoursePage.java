@@ -46,9 +46,7 @@ public class StudentCoursePage extends UserCoursePage {
 
     private void handleViews() {
         TextView profName = binding.idProfessorName;
-//        TextView courseName = binding.idCourseName;
         profName.setText("Prof Name");
-//        courseName.setText("Course Name");
     }
 
     private void handleRecyclerView() {

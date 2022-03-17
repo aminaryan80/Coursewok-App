@@ -1,7 +1,6 @@
 package edu.sharif.courseworkapp.ui.course;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -57,9 +56,7 @@ public class ProfessorCoursePage extends UserCoursePage {
 
     private void handleViews() {
         TextView profName = binding.idProfessorName;
-//        TextView courseName = binding.idCourseName;
         profName.setText("Prof Name");
-//        courseName.setText("Course Name");
     }
 
     private void handleRecyclerView() {
