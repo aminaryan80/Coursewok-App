@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.controller.RegisterHandler;
 import edu.sharif.courseworkapp.model.user.User;
@@ -23,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        AtomicBoolean isStudent = new AtomicBoolean(false);
         TextView username = findViewById(R.id.username);
         TextView password = findViewById(R.id.password);
         TextView firstname = findViewById(R.id.firstname);
@@ -37,8 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
             RadioButton radioButton = findViewById(checkedId);
             String string = radioButton.getText().toString();
             if (string.equals("Student")) {
+                isStudent.set(true);
                 extra.setHint(R.string.student_number);
             } else {
+                isStudent.set(false);
                 extra.setHint(R.string.university);
             }
 
@@ -52,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                     firstname.getText().toString(),
                     lastname.getText().toString(),
                     extra.getText().toString(),
-                    true
+                    isStudent.get()
             );
             User user = registerHandler.register();
             String a = user.getDisplayName();
@@ -73,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
             intent = new Intent(RegisterActivity.this,
                     ProfessorPanelActivity.class);
         }
+        intent.putExtra("username", user.getUsername());
         startActivity(intent);
     }
 }

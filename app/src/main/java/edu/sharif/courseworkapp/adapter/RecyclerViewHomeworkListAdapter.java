@@ -17,13 +17,19 @@ import edu.sharif.courseworkapp.model.Homework;
 
 public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
         RecyclerViewHomeworkListAdapter.HomeworkViewHolder> {
-
+    private final String username;
+    private final String courseId;
+    private final Context context;
     private final List<Homework> homeworkList;
-    Context context;
 
-    public RecyclerViewHomeworkListAdapter(List<Homework> homeworkList, Context context) {
+    public RecyclerViewHomeworkListAdapter(
+            List<Homework> homeworkList, Context context,
+            String username, String courseId
+    ) {
         this.homeworkList = homeworkList;
         this.context = context;
+        this.username = username;
+        this.courseId = courseId;
     }
 
     public static class HomeworkViewHolder extends RecyclerView.ViewHolder {

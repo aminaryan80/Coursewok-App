@@ -13,32 +13,22 @@ import java.util.List;
 import edu.sharif.courseworkapp.adapter.RecyclerViewHomeworkListAdapter;
 import edu.sharif.courseworkapp.model.Homework;
 
-public class UserCoursePage extends AppCompatActivity {
-    protected String username;
-    protected String courseId;
+public abstract class UserCoursePage extends AppCompatActivity {
     protected RecyclerViewHomeworkListAdapter homeworkListAdapter;
-
     protected List<Homework> homeworkList = new ArrayList<>();
 
+    protected String getUsername() {
+        return getIntent().getStringExtra("username");
+    }
+
+    protected String getCourseId() {
+        return getIntent().getStringExtra("courseId");
+    }
+
     protected RecyclerViewHomeworkListAdapter getCourseListAdapter() {
-        return new RecyclerViewHomeworkListAdapter(homeworkList, getApplicationContext());
-    }
-
-    protected LinearLayoutManager getVerticalLayoutManager() {
-        return new LinearLayoutManager(
-                UserCoursePage.this,
-                LinearLayoutManager.VERTICAL,
-                false
-        );
-    }
-
-    protected void addDivider(RecyclerView courseRecyclerView) {
-        courseRecyclerView.addItemDecoration(
-                new DividerItemDecoration(
-                        UserCoursePage.this,
-                        LinearLayoutManager.VERTICAL
-                )
-        );
+        return new RecyclerViewHomeworkListAdapter(
+                homeworkList, getApplicationContext(),
+                getUsername(), getCourseId());
     }
 
     @SuppressLint("NotifyDataSetChanged")

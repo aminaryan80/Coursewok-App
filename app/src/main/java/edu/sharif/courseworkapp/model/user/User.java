@@ -11,7 +11,6 @@ public class User {
     public static final String STUDENT = "student";
 
     static ArrayList<User> users = new ArrayList<User>();
-    private final String id;
     private String username;
     private String firstname;
     private String lastname;
@@ -19,16 +18,11 @@ public class User {
     protected String type;
 
     public User(String username, String password, String firstname, String lastname) {
-        this.id = UUID.randomUUID().toString().substring(0, 4);
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         users.add(this);
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getUsername() {
@@ -82,6 +76,15 @@ public class User {
     public static User getUserByUsername(String username, String type) {
         for (User user : users) {
             if (user.type.equals(type) && user.username.equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public static User getUserByUsername(String username) {
+        for (User user : users) {
+            if (user.username.equals(username)) {
                 return user;
             }
         }

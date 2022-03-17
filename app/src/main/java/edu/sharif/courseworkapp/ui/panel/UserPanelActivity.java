@@ -1,13 +1,11 @@
 package edu.sharif.courseworkapp.ui.panel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,31 +15,16 @@ import edu.sharif.courseworkapp.adapter.RecyclerViewCourseListAdapter;
 import edu.sharif.courseworkapp.model.Course;
 
 
-public class UserPanelActivity extends AppCompatActivity {
-    protected String username;
+public abstract class UserPanelActivity extends AppCompatActivity {
     protected RecyclerViewCourseListAdapter courseListAdapter;
-
     protected List<Course> courseList = new ArrayList<>();
 
     protected RecyclerViewCourseListAdapter getCourseListAdapter() {
-        return new RecyclerViewCourseListAdapter(courseList, getApplicationContext());
+        return new RecyclerViewCourseListAdapter(courseList, getApplicationContext(), getUsername());
     }
 
-    protected LinearLayoutManager getVerticalLayoutManager() {
-        return new LinearLayoutManager(
-                UserPanelActivity.this,
-                LinearLayoutManager.VERTICAL,
-                false
-        );
-    }
-
-    protected void addDivider(RecyclerView courseRecyclerView) {
-        courseRecyclerView.addItemDecoration(
-                new DividerItemDecoration(
-                        UserPanelActivity.this,
-                        LinearLayoutManager.VERTICAL
-                )
-        );
+    protected String getUsername() {
+        return getIntent().getStringExtra("username");
     }
 
     @Override
