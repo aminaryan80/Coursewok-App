@@ -21,7 +21,6 @@ public class ProfessorCoursePage extends UserCoursePage {
 
     private void setBinding() {
         binding = ActivityProfessorCoursePageBinding.inflate(getLayoutInflater());
-        System.out.println(binding);
     }
 
     protected LinearLayoutManager getVerticalLayoutManager() {

@@ -75,4 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("username", user.getUsername());
         startActivity(intent);
     }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(LoginActivity.this, "BYE!", Toast.LENGTH_SHORT).show();
+        finishAndRemoveTask();
+    }
 }

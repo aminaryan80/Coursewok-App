@@ -25,7 +25,9 @@
         <activity
             android:name=".ui.course.ProfessorCoursePage"
             android:theme="@style/Theme.CourseworkApp.NoActionBar" />
-        <activity android:name=".ui.course.StudentCoursePage" />
+        <activity
+            android:name=".ui.course.StudentCoursePage"
+            android:theme="@style/Theme.CourseworkApp.NoActionBar" />
     </application>
 
 </manifest>
