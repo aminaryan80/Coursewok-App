@@ -1,7 +1,7 @@
 package edu.sharif.courseworkapp.ui.course;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityProfessorCoursePageBinding;
 
 public class ProfessorCoursePage extends UserCoursePage {
@@ -47,15 +49,12 @@ public class ProfessorCoursePage extends UserCoursePage {
     }
 
     private void handleToolbar() {
-//        Toolbar toolbar = binding.toolbar;
-//        setSupportActionBar(toolbar);
-//        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-//        toolBarLayout.setTitle("Course Name");
-    }
-
-    private void handleViews() {
-        TextView profName = binding.idProfessorName;
-        profName.setText("Prof Name");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        CollapsingToolbarLayout coll_toolbar = findViewById(R.id.toolbar_layout);
+        coll_toolbar.setTitle("Prof Name");
+        coll_toolbar.setCollapsedTitleTextColor(Color.WHITE);
+        coll_toolbar.setExpandedTitleColor(Color.WHITE);
     }
 
     private void handleRecyclerView() {
@@ -77,7 +76,6 @@ public class ProfessorCoursePage extends UserCoursePage {
 
         handleFab();
         handleToolbar();
-        handleViews();
         handleRecyclerView();
     }
 }

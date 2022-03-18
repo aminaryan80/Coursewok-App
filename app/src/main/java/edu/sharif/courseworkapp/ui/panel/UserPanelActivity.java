@@ -1,16 +1,13 @@
 package edu.sharif.courseworkapp.ui.panel;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,9 +85,8 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_search) {
-
+            // pass
         }
-
         return super.onOptionsItemSelected(item);
     }
 

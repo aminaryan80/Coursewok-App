@@ -7,17 +7,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import edu.sharif.courseworkapp.databinding.ActivityProfessorPanelBinding;
+import edu.sharif.courseworkapp.R;
 
 public class ProfessorPanelActivity extends UserPanelActivity {
-    private ActivityProfessorPanelBinding binding;
-
-    private void setBinding() {
-        binding = ActivityProfessorPanelBinding.inflate(getLayoutInflater());
-    }
-
     private LinearLayoutManager getVerticalLayoutManager() {
         return new LinearLayoutManager(
                 ProfessorPanelActivity.this,
@@ -38,16 +33,15 @@ public class ProfessorPanelActivity extends UserPanelActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_professor_panel);
 
-        setBinding();
-        setContentView(binding.getRoot());
-
-        // TODO: add new course
-        binding.fab.setOnClickListener(view ->
+        FloatingActionButton addButton = findViewById(R.id.fab);
+        addButton.setOnClickListener(view ->
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+                        .setAction("Action", null).show()
+        );
 
-        RecyclerView courseRecyclerView = binding.idRecyclerViewCourseList;
+        RecyclerView courseRecyclerView = findViewById(R.id.idRecyclerViewCourseList);
         addDivider(courseRecyclerView);
         courseListAdapter = getCourseListAdapter();
         LinearLayoutManager verticalLayoutManager = getVerticalLayoutManager();
