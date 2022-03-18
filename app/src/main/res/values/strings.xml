@@ -7,7 +7,7 @@
     <string name="prompt_firstname">Firstname</string>
     <string name="prompt_lastname">Lastname</string>
     <string name="action_register">register</string>
-    <string name="action_sign_in">Sign in</string>
+    <string name="action_login">Login</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
@@ -15,7 +15,7 @@
     <string name="professor">Professor</string>
     <string name="student">Student</string>
     <string name="student_number">student number</string>
-    <string name="university">university</string>
+    <string name="university">University</string>
     <string name="action_logout">Logout</string>
     <string name="action_other_courses">Other courses</string>
     <string name="course_img">Course Image</string>

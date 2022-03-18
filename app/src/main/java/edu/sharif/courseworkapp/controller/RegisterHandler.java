@@ -1,15 +1,11 @@
 package edu.sharif.courseworkapp.controller;
 
-import android.app.Activity;
-import android.widget.Toast;
-
 import edu.sharif.courseworkapp.model.user.Professor;
 import edu.sharif.courseworkapp.model.user.Student;
 import edu.sharif.courseworkapp.model.user.User;
 
 public class RegisterHandler {
 
-    private final Activity current_activity;
     private final String username;
     private final String firstname;
     private final String lastname;
@@ -18,10 +14,9 @@ public class RegisterHandler {
     private final boolean isStudent;
 
     public RegisterHandler(
-            Activity activity, String username, String password, String firstname,
+            String username, String password, String firstname,
             String lastname, String extra, boolean isStudent
     ) {
-        this.current_activity = activity;
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -36,11 +31,6 @@ public class RegisterHandler {
             result = register_student();
         } else {
             result = register_professor();
-        }
-        if (result != null) {
-            Toast.makeText(current_activity, "REGISTER SUCCESSFUL", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(current_activity, "REGISTER FAILED!", Toast.LENGTH_SHORT).show();
         }
         return result;
     }
