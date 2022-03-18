@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import edu.sharif.courseworkapp.model.user.User;
+import edu.sharif.courseworkapp.utils.CourseImageUtils;
 
 public class Course {
 
     private static ArrayList<Course> courses = new ArrayList<>();
+    private final int image;
     private final String id;
     private final String name;
     private final String professorId;
@@ -18,6 +20,7 @@ public class Course {
         this.name = courseName;
         this.professorId = professorId;
         this.studentIds = studentIds;
+        this.image = CourseImageUtils.getRandomImage();
         courses.add(this);
     }
 
@@ -26,6 +29,7 @@ public class Course {
         this.name = courseName;
         this.professorId = professorId;
         this.studentIds = new ArrayList<>();
+        this.image = CourseImageUtils.getRandomImage();
         courses.add(this);
     }
 
@@ -43,6 +47,10 @@ public class Course {
 
     public String getProfessorName() {
         return User.getProfessorByUsername(professorId).getDisplayName();
+    }
+
+    public int getImage() {
+        return image;
     }
 
     public ArrayList<String> getStudents() {

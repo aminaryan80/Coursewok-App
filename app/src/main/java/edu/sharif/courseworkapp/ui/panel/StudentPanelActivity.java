@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityStudentPanelBinding;
+import edu.sharif.courseworkapp.model.Course;
 
 public class StudentPanelActivity extends UserPanelActivity {
     private ActivityStudentPanelBinding binding;
@@ -57,5 +60,19 @@ public class StudentPanelActivity extends UserPanelActivity {
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(courseListAdapter);
         populateCourseList();
+    }
+
+    @Override
+    protected ArrayList<Course> filterUser(ArrayList<Course> courses) {
+        ArrayList<Course> filtered = new ArrayList<>();
+        for (Course course : courses) {
+            ArrayList<String> students = course.getStudents();
+            for (String studentId : students) {
+                if (studentId.equals(getUsername())) {
+                    filtered.add(course);
+                }
+            }
+        }
+        return filtered;
     }
 }

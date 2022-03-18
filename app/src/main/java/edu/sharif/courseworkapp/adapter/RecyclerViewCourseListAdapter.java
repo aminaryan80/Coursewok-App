@@ -82,9 +82,7 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         holder.getCourseNameTextView().setText(course.getName());
 
         holder.getProfNameTextView().setText(course.getProfessorName());
-
-        int randomImage = CourseImageUtils.getRandomImage();
-        holder.getImageView().setImageResource(randomImage);
+        holder.getImageView().setImageResource(course.getImage());
 
         holder.getCourseItem().setOnClickListener(
                 view -> handleOnClickItem(position));
