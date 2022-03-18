@@ -20,6 +20,7 @@ import edu.sharif.courseworkapp.ui.LoginActivity;
 public abstract class UserCoursePage extends AppCompatActivity {
     protected RecyclerViewHomeworkListAdapter homeworkListAdapter;
     protected List<Homework> homeworkList = new ArrayList<>();
+    private final List<Homework> allHomeworkList = new ArrayList<>();
 
     protected String getUsername() {
         return getIntent().getStringExtra("username");
@@ -35,12 +36,14 @@ public abstract class UserCoursePage extends AppCompatActivity {
                 getUsername(), getCourseId());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_course_page, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+    private void searchOnClose(SearchView searchView) {
+        searchView.setOnCloseListener(() -> {
+            homeworkListAdapter.setFilter(allHomeworkList);
+            return false;
+        });
+    }
 
+    private void searchOnQueryTextChanged(SearchView searchView) {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -55,6 +58,17 @@ public abstract class UserCoursePage extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_course_page, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchOnQueryTextChanged(searchView);
+        searchOnClose(searchView);
+
         return true;
     }
 
@@ -105,6 +119,7 @@ public abstract class UserCoursePage extends AppCompatActivity {
         homeworkList.add(onion);
         homeworkList.add(cabbage);
         homeworkList.add(cauliflower);
+        allHomeworkList.addAll(homeworkList);
         homeworkListAdapter.notifyDataSetChanged();
     }
 }

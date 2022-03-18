@@ -17,7 +17,6 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.model.Homework;
-import edu.sharif.courseworkapp.utils.CourseImageUtils;
 import edu.sharif.courseworkapp.utils.HomeworkImageUtils;
 
 public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<

@@ -22,6 +22,7 @@ import edu.sharif.courseworkapp.ui.LoginActivity;
 public abstract class UserPanelActivity extends AppCompatActivity {
     protected RecyclerViewCourseListAdapter courseListAdapter;
     protected List<Course> courseList = new ArrayList<>();
+    protected List<Course> allCourseList = new ArrayList<>();
 
     protected RecyclerViewCourseListAdapter getCourseListAdapter() {
         return new RecyclerViewCourseListAdapter(courseList, getApplicationContext(), getUsername());
@@ -31,12 +32,14 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         return getIntent().getStringExtra("username");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_panel, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+    private void searchOnClose(SearchView searchView) {
+        searchView.setOnCloseListener(() -> {
+            courseListAdapter.setFilter(allCourseList);
+            return false;
+        });
+    }
 
+    private void searchOnQueryTextChanged(SearchView searchView) {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -51,6 +54,17 @@ public abstract class UserPanelActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_panel, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchOnQueryTextChanged(searchView);
+        searchOnClose(searchView);
+
         return true;
     }
 
@@ -105,6 +119,7 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         courseList.add(onion);
         courseList.add(cabbage);
         courseList.add(cauliflower);
+        allCourseList.addAll(courseList);
         courseListAdapter.notifyDataSetChanged();
     }
 }
