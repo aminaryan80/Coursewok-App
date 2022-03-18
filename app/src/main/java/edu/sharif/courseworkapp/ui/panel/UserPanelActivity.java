@@ -15,6 +15,7 @@ import java.util.List;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewCourseListAdapter;
 import edu.sharif.courseworkapp.model.Course;
+import edu.sharif.courseworkapp.model.user.Professor;
 import edu.sharif.courseworkapp.ui.LoginActivity;
 
 
@@ -93,10 +94,14 @@ public abstract class UserPanelActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     protected void populateCourseList() {
-        Course potato = new Course("Potato", "1");
-        Course onion = new Course("Onion", "2");
-        Course cabbage = new Course("Cabbage", "3");
-        Course cauliflower = new Course("Cauliflower", "4");
+        new Professor("Prof1", "123", "Kaley", "Thomas", "Sharif");
+        new Professor("Prof2", "123", "Jeffery", "Mercier", "Sharif");
+        new Professor("Prof3", "123", "Brian", "Brooks", "Sharif");
+        new Professor("Prof4", "123", "Robert", "Saenz", "Sharif");
+        Course potato = new Course("Potato", "Prof1");
+        Course onion = new Course("Onion", "Prof2");
+        Course cabbage = new Course("Cabbage", "Prof3");
+        Course cauliflower = new Course("Cauliflower", "Prof4");
         courseList.add(potato);
         courseList.add(onion);
         courseList.add(cabbage);
