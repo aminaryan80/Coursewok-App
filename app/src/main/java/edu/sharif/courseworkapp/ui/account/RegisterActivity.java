@@ -1,6 +1,7 @@
-package edu.sharif.courseworkapp.ui;
+package edu.sharif.courseworkapp.ui.account;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -71,15 +72,27 @@ public class RegisterActivity extends AppCompatActivity {
             String userDisplayName = user.getDisplayName();
             String response = userDisplayName + " Registered Successfully.";
             Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_SHORT).show();
+            saveUser(user);
             goToLogin(user.getUsername(), user.getPassword());
         });
 
-        login_button.setOnClickListener(view -> {
-            goToLogin(
-                    usernameTextView.getText().toString(),
-                    passwordTextView.getText().toString()
-            );
-        });
+        login_button.setOnClickListener(view -> goToLogin(
+                usernameTextView.getText().toString(),
+                passwordTextView.getText().toString()
+        ));
+    }
+
+    private void saveUser(User user) {
+        SharedPreferences.Editor sharedPreferencesEditor;
+        String type = user.getType();
+        if (type.equals(User.STUDENT)) {
+            sharedPreferencesEditor = getSharedPreferences("Students", MODE_PRIVATE).edit();
+        } else {
+            sharedPreferencesEditor = getSharedPreferences("Professors", MODE_PRIVATE).edit();
+        }
+        sharedPreferencesEditor.putString(user.getUsername(), user.encode());
+        sharedPreferencesEditor.apply();
+
     }
 
     private void goToLogin(String username, String password) {

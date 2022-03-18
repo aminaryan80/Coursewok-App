@@ -15,7 +15,7 @@ import java.util.List;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewHomeworkListAdapter;
 import edu.sharif.courseworkapp.model.Homework;
-import edu.sharif.courseworkapp.ui.LoginActivity;
+import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
 public abstract class UserCoursePage extends AppCompatActivity {
     protected RecyclerViewHomeworkListAdapter homeworkListAdapter;

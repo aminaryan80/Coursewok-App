@@ -19,4 +19,9 @@ public class Student extends User {
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
+
+    @Override
+    public String encode() {
+        return String.format("%s:%s:%s:%s:%s", username, password, firstname, lastname, studentNumber);
+    }
 }

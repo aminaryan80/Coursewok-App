@@ -16,7 +16,7 @@ import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewCourseListAdapter;
 import edu.sharif.courseworkapp.model.Course;
 import edu.sharif.courseworkapp.model.user.Professor;
-import edu.sharif.courseworkapp.ui.LoginActivity;
+import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
 
 public abstract class UserPanelActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package edu.sharif.courseworkapp.ui;
+package edu.sharif.courseworkapp.ui.account;
 
 import android.content.Intent;
 import android.os.Bundle;

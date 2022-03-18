@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseworkApp">
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.account.LoginActivity" />
+        <activity android:name=".ui.account.RegisterActivity" />
         <activity android:name=".ui.panel.ProfessorPanelActivity" />
         <activity android:name=".ui.panel.StudentPanelActivity" />
         <activity

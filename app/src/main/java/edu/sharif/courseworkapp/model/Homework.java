@@ -12,6 +12,15 @@ public class Homework {
     private final String question;
     private String name;
 
+
+    public Homework(String id, String name, String courseId, String question, int image) {
+        this.id = id;
+        this.name = name;
+        this.courseId = courseId;
+        this.question = question;
+        this.image = image;
+    }
+
     public Homework(String name, String courseId, String question) {
         this.id = UUID.randomUUID().toString().substring(0, 4);
         this.name = name;
@@ -51,5 +60,9 @@ public class Homework {
 
     public int getImage() {
         return image;
+    }
+
+    public static String[] decode(String value) {
+        return value.split(":");
     }
 }

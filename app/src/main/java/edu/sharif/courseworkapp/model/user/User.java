@@ -1,20 +1,19 @@
 package edu.sharif.courseworkapp.model.user;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
-public class User {
+public abstract class User {
     public static final String PROFESSOR = "professor";
     public static final String STUDENT = "student";
 
     static ArrayList<User> users = new ArrayList<>();
-    private String username;
-    private String firstname;
-    private String lastname;
-    private String password;
+    protected String username;
+    protected String firstname;
+    protected String lastname;
+    protected String password;
     protected String type;
 
     public User(String username, String password, String firstname, String lastname) {
@@ -57,6 +56,10 @@ public class User {
         this.password = password;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public String getDisplayName() {
         return firstname + " " + lastname;
     }
@@ -90,4 +93,10 @@ public class User {
         }
         return null;
     }
+
+    public static String[] decode(String value) {
+        return value.split(":");
+    }
+
+    public abstract String encode();
 }
