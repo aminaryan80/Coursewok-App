@@ -6,13 +6,13 @@ public class Answer {
 
     private final String id;
     private final String studentId;
-    private final String homeWorkId;
+    private final String homeworkId;
     private String answer;
 
-    public Answer(String studentId, String homeWorkId, String answer) {
+    public Answer(String studentId, String homeworkId, String answer) {
         this.id = UUID.randomUUID().toString().substring(0, 4);
         this.studentId = studentId;
-        this.homeWorkId = homeWorkId;
+        this.homeworkId = homeworkId;
         this.answer = answer;
     }
 
@@ -24,8 +24,8 @@ public class Answer {
         return studentId;
     }
 
-    public String getHomeWorkId() {
-        return homeWorkId;
+    public String getHomeworkId() {
+        return homeworkId;
     }
 
     public String getAnswer() {

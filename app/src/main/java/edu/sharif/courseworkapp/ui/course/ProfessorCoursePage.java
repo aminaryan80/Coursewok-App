@@ -51,7 +51,7 @@ public class ProfessorCoursePage extends UserCoursePage {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout coll_toolbar = findViewById(R.id.toolbar_layout);
-        coll_toolbar.setTitle("Prof Name");
+        coll_toolbar.setTitle("Class Name - Prof Name");
         coll_toolbar.setCollapsedTitleTextColor(Color.WHITE);
         coll_toolbar.setExpandedTitleColor(Color.WHITE);
     }

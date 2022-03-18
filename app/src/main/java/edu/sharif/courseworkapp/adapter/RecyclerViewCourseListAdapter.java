@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +28,9 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
     private final Context context;
     private List<Course> courseList;
 
-    public RecyclerViewCourseListAdapter(List<Course> courseList, Context context, String username) {
+    public RecyclerViewCourseListAdapter(
+            List<Course> courseList, Context context, String username
+    ) {
         this.courseList = courseList;
         this.context = context;
         this.username = username;
@@ -38,12 +40,14 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         private final ImageView imageView;
         private final TextView courseNameTextView;
         private final TextView profNameTextView;
+        private final LinearLayout courseItem;
 
         public CourseViewHolder(View view) {
             super(view);
             imageView = view.findViewById(R.id.idCourseImage);
             courseNameTextView = view.findViewById(R.id.idCourseName);
             profNameTextView = view.findViewById(R.id.idProfessorName);
+            courseItem = view.findViewById(R.id.idCourseItem);
         }
 
         public ImageView getImageView() {
@@ -56,6 +60,10 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
 
         public TextView getProfNameTextView() {
             return profNameTextView;
+        }
+
+        public LinearLayout getCourseItem() {
+            return courseItem;
         }
     }
 
@@ -73,14 +81,12 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         Course course = courseList.get(position);
         holder.getCourseNameTextView().setText(course.getName());
 
-        // TODO: remove
-        holder.getProfNameTextView().setText("Prof");
-//        holder.getProfNameTextView().setText(course.getProfessorName());
+        holder.getProfNameTextView().setText(course.getProfessorName());
 
         int randomImage = CourseImageUtils.getRandomImage();
         holder.getImageView().setImageResource(randomImage);
 
-        holder.getCourseNameTextView().setOnClickListener(
+        holder.getCourseItem().setOnClickListener(
                 view -> handleOnClickItem(position));
     }
 
@@ -97,7 +103,6 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
 
     private void handleOnClickItem(int position) {
         Course course = courseList.get(position);
-        Toast.makeText(context, course.getName() + " is selected", Toast.LENGTH_SHORT).show();
 
         Intent intent;
         User user = User.getUserByUsername(username);
