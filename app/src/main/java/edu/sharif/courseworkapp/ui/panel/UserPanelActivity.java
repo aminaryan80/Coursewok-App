@@ -4,8 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +23,8 @@ import edu.sharif.courseworkapp.model.Course;
 public abstract class UserPanelActivity extends AppCompatActivity {
     protected RecyclerViewCourseListAdapter courseListAdapter;
     protected List<Course> courseList = new ArrayList<>();
+    protected ArrayList<Course> allCourseList;
+    protected ArrayAdapter<String> adapter;
 
     protected RecyclerViewCourseListAdapter getCourseListAdapter() {
         return new RecyclerViewCourseListAdapter(courseList, getApplicationContext(), getUsername());
@@ -27,10 +34,43 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         return getIntent().getStringExtra("username");
     }
 
+    private void setAllCourseList() {
+        Course potato = new Course("Potato", "1");
+        Course onion = new Course("Onion", "2");
+        Course cabbage = new Course("Cabbage", "3");
+        Course cauliflower = new Course("Cauliflower", "4");
+        allCourseList.add(potato);
+        allCourseList.add(onion);
+        allCourseList.add(cabbage);
+        allCourseList.add(cauliflower);
+        allCourseList.add(potato);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_course_page, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+////                searchView.clearFocus();
+////                if (list.contains(query)){
+////                    adapter.getFilter().filter(query);
+////                } else{
+////                    Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+////                }
+////                return false;
+//
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+////                    adapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
         return true;
     }
 
@@ -43,19 +83,19 @@ public abstract class UserPanelActivity extends AppCompatActivity {
 
         // TODO: logout
         if (id == R.id.action_logout) {
+            Toast.makeText(this, "lOGOUT", Toast.LENGTH_SHORT).show();
             return true;
         }
 
-        // TODO: other courses page (include courses that student doesn't have and search courses)
-        if (id == R.id.action_other_courses) {
-            return true;
+        if (id == R.id.action_search) {
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    protected void populateCourseList(){
+    protected void populateCourseList() {
         Course potato = new Course("Potato", "1");
         Course onion = new Course("Onion", "2");
         Course cabbage = new Course("Cabbage", "3");

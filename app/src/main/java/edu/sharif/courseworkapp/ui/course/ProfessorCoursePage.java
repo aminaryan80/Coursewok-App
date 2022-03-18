@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -48,10 +47,10 @@ public class ProfessorCoursePage extends UserCoursePage {
     }
 
     private void handleToolbar() {
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle("Course Name");
+//        Toolbar toolbar = binding.toolbar;
+//        setSupportActionBar(toolbar);
+//        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
+//        toolBarLayout.setTitle("Course Name");
     }
 
     private void handleViews() {
@@ -75,7 +74,6 @@ public class ProfessorCoursePage extends UserCoursePage {
 
         setBinding();
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
 
         handleFab();
         handleToolbar();

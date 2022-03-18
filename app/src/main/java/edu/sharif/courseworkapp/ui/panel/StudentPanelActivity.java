@@ -39,7 +39,6 @@ public class StudentPanelActivity extends UserPanelActivity {
 
         setBinding();
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
 
         RecyclerView courseRecyclerView = binding.idRecyclerViewCourseList;
         addDivider(courseRecyclerView);

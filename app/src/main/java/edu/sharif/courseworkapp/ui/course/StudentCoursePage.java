@@ -38,10 +38,10 @@ public class StudentCoursePage extends UserCoursePage {
     }
 
     private void handleToolbar() {
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle("Course Name");
+//        Toolbar toolbar = binding.toolbar;
+//        setSupportActionBar(toolbar);
+//        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
+//        toolBarLayout.setTitle("Course Name");
     }
 
     private void handleViews() {
@@ -65,7 +65,6 @@ public class StudentCoursePage extends UserCoursePage {
 
         setBinding();
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
 
         handleToolbar();
         handleViews();

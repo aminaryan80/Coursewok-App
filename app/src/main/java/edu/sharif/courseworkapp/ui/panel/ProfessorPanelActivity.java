@@ -41,7 +41,6 @@ public class ProfessorPanelActivity extends UserPanelActivity {
 
         setBinding();
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
 
         // TODO: add new course
         binding.fab.setOnClickListener(view ->

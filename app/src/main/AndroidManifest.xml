@@ -19,14 +19,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.panel.ProfessorPanelActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".ui.panel.StudentPanelActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".ui.course.ProfessorCoursePage"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".ui.course.StudentCoursePage"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".ui.panel.ProfessorPanelActivity" />
+        <activity android:name=".ui.panel.StudentPanelActivity" />
+        <activity android:name=".ui.course.ProfessorCoursePage" />
+        <activity android:name=".ui.course.StudentCoursePage" />
     </application>
 
 </manifest>
