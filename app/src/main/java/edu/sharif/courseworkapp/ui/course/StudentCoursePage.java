@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.ui.course;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -13,9 +14,13 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityStudentCoursePageBinding;
+import edu.sharif.courseworkapp.model.Course;
 
 public class StudentCoursePage extends UserCoursePage {
+
     private ActivityStudentCoursePageBinding binding;
+    private String username;
+    private String courseId;
 
     private void setBinding() {
         binding = ActivityStudentCoursePageBinding.inflate(getLayoutInflater());
@@ -42,7 +47,8 @@ public class StudentCoursePage extends UserCoursePage {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout coll_toolbar = findViewById(R.id.toolbar_layout);
-        coll_toolbar.setTitle("Student Name");
+        String courseName = Course.getCourseById(courseId).getName();
+        coll_toolbar.setTitle(courseName);
         coll_toolbar.setCollapsedTitleTextColor(Color.WHITE);
         coll_toolbar.setExpandedTitleColor(Color.WHITE);
     }
@@ -61,10 +67,17 @@ public class StudentCoursePage extends UserCoursePage {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        get_extras();
         setBinding();
         setContentView(binding.getRoot());
 
         handleToolbar();
         handleRecyclerView();
+    }
+
+    private void get_extras() {
+        Intent intent = getIntent();
+        this.username = intent.getStringExtra("username");
+        this.courseId = intent.getStringExtra("courseId");
     }
 }

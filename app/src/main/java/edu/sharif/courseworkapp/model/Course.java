@@ -7,6 +7,7 @@ import edu.sharif.courseworkapp.model.user.User;
 
 public class Course {
 
+    private static ArrayList<Course> courses = new ArrayList<>();
     private final String id;
     private final String name;
     private final String professorId;
@@ -17,6 +18,7 @@ public class Course {
         this.name = courseName;
         this.professorId = professorId;
         this.studentIds = studentIds;
+        courses.add(this);
     }
 
     public Course(String courseName, String professorId) {
@@ -24,6 +26,7 @@ public class Course {
         this.name = courseName;
         this.professorId = professorId;
         this.studentIds = new ArrayList<>();
+        courses.add(this);
     }
 
     public String getId() {
@@ -52,5 +55,14 @@ public class Course {
 
     public void addStudent(String studentId) {
         this.studentIds.add(studentId);
+    }
+
+    public static Course getCourseById(String courseId) {
+        for (Course course : courses) {
+            if (course.id.equals(courseId)) {
+                return course;
+            }
+        }
+        return null;
     }
 }

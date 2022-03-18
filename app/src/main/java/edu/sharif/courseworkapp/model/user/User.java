@@ -10,7 +10,7 @@ public class User {
     public static final String PROFESSOR = "professor";
     public static final String STUDENT = "student";
 
-    static ArrayList<User> users = new ArrayList<User>();
+    static ArrayList<User> users = new ArrayList<>();
     private String username;
     private String firstname;
     private String lastname;
