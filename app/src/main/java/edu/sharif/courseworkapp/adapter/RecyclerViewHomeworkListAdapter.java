@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,7 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
     private final String username;
     private final String courseId;
     private final Context context;
-    private final List<Homework> homeworkList;
+    private List<Homework> homeworkList;
 
     public RecyclerViewHomeworkListAdapter(
             List<Homework> homeworkList, Context context,
@@ -76,5 +77,11 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
     @Override
     public int getItemCount() {
         return homeworkList.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFilter(List<Homework> filtered) {
+        this.homeworkList = filtered;
+        notifyDataSetChanged();
     }
 }
