@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.model.Homework;
-import edu.sharif.courseworkapp.utils.CourseImageUtils;
 import edu.sharif.courseworkapp.utils.HomeworkImageUtils;
 
 public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
@@ -24,7 +24,7 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
     private final String username;
     private final String courseId;
     private final Context context;
-    private final List<Homework> homeworkList;
+    private List<Homework> homeworkList;
 
     public RecyclerViewHomeworkListAdapter(
             List<Homework> homeworkList, Context context,
@@ -37,12 +37,11 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
     }
 
     public static class HomeworkViewHolder extends RecyclerView.ViewHolder {
-
         private final TextView nameTextView;
         private final ImageView homeworkImageView;
         private final LinearLayout homeworkItem;
 
-        public HomeworkViewHolder(View view) {
+        public HomeworkViewHolder(@NonNull View view) {
             super(view);
             this.homeworkImageView = view.findViewById(R.id.idHomeworkImage);
             this.nameTextView = view.findViewById(R.id.idHomeworkName);
@@ -64,7 +63,7 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
 
     @NonNull
     @Override
-    public HomeworkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HomeworkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View homeworkView = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.homework_item, parent, false
         );
@@ -72,7 +71,7 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
     }
 
     @Override
-    public void onBindViewHolder(HomeworkViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HomeworkViewHolder holder, int position) {
         Homework homework = homeworkList.get(position);
         holder.getNameTextView().setText(homework.getName());
 
@@ -94,5 +93,11 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
     @Override
     public int getItemCount() {
         return homeworkList.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFilter(List<Homework> filtered) {
+        this.homeworkList = filtered;
+        notifyDataSetChanged();
     }
 }

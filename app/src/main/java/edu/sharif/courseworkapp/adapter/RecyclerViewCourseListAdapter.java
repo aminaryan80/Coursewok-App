@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         RecyclerViewCourseListAdapter.CourseViewHolder> {
     private final String username;
     private final Context context;
-    private final List<Course> courseList;
+    private List<Course> courseList;
 
     public RecyclerViewCourseListAdapter(
             List<Course> courseList, Context context, String username
@@ -36,7 +37,6 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
     }
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
-
         private final ImageView imageView;
         private final TextView courseNameTextView;
         private final TextView profNameTextView;
@@ -93,6 +93,12 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
     @Override
     public int getItemCount() {
         return courseList.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFilter(List<Course> filtered) {
+        this.courseList = filtered;
+        notifyDataSetChanged();
     }
 
     private void handleOnClickItem(int position) {
