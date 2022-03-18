@@ -78,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         super.onBackPressed();
-        Toast.makeText(LoginActivity.this, "BYE!", Toast.LENGTH_SHORT).show();
-        finishAndRemoveTask();
+        this.finishAffinity();
     }
 }

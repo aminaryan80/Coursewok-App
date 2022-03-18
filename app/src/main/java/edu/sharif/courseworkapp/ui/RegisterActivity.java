@@ -91,7 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         super.onBackPressed();
-        Toast.makeText(RegisterActivity.this, "BYE!", Toast.LENGTH_SHORT).show();
-        finishAndRemoveTask();
+        this.finishAffinity();
     }
 }

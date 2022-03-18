@@ -1,11 +1,11 @@
 package edu.sharif.courseworkapp.ui.panel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,7 @@ import java.util.List;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewCourseListAdapter;
 import edu.sharif.courseworkapp.model.Course;
+import edu.sharif.courseworkapp.ui.LoginActivity;
 
 
 public abstract class UserPanelActivity extends AppCompatActivity {
@@ -78,9 +79,9 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        // TODO: logout
         if (id == R.id.action_logout) {
-            Toast.makeText(this, "lOGOUT", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(UserPanelActivity.this, LoginActivity.class);
+            startActivity(intent);
             return true;
         }
 
