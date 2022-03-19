@@ -46,8 +46,7 @@ public class CreateNewCourseActivity extends AppCompatActivity {
     }
 
     private void saveCourse(Course course) {
-        SharedPreferences.Editor sharedPreferencesEditor = getSharedPreferences("Courses", MODE_PRIVATE).edit();
-        ;
+        SharedPreferences.Editor sharedPreferencesEditor = getSharedPreferences(Course.NAME, MODE_PRIVATE).edit();
         sharedPreferencesEditor.putString(course.getId(), course.encode());
         sharedPreferencesEditor.apply();
     }

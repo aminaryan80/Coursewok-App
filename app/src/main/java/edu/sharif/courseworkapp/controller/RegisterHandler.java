@@ -5,7 +5,6 @@ import edu.sharif.courseworkapp.model.user.Student;
 import edu.sharif.courseworkapp.model.user.User;
 
 public class RegisterHandler {
-
     private final String username;
     private final String firstname;
     private final String lastname;

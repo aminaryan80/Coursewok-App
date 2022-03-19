@@ -41,7 +41,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void loadStudentData() {
-        SharedPreferences studentSharedPreferences = getSharedPreferences("Students", MODE_PRIVATE);
+        SharedPreferences studentSharedPreferences = getSharedPreferences(Student.NAME, MODE_PRIVATE);
         Map<String, ?> map = studentSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Student.decode(studentSharedPreferences.getString(key, ""));
@@ -50,7 +50,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void loadProfessorData() {
-        SharedPreferences professorSharedPreferences = getSharedPreferences("Professors", MODE_PRIVATE);
+        SharedPreferences professorSharedPreferences = getSharedPreferences(Professor.NAME, MODE_PRIVATE);
         Map<String, ?> map = professorSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Professor.decode(professorSharedPreferences.getString(key, ""));
@@ -59,7 +59,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void loadCourseData() {
-        SharedPreferences courseSharedPreferences = getSharedPreferences("Courses", MODE_PRIVATE);
+        SharedPreferences courseSharedPreferences = getSharedPreferences(Course.NAME, MODE_PRIVATE);
         Map<String, ?> map = courseSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Course.decode(courseSharedPreferences.getString(key, ""));
@@ -72,7 +72,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void loadHomeworkData() {
-        SharedPreferences homeworkSharedPreferences = getSharedPreferences("Homeworks", MODE_PRIVATE);
+        SharedPreferences homeworkSharedPreferences = getSharedPreferences(Homework.NAME, MODE_PRIVATE);
         Map<String, ?> map = homeworkSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Homework.decode(homeworkSharedPreferences.getString(key, ""));
@@ -81,7 +81,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void loadAnswerData() {
-        SharedPreferences answerSharedPreferences = getSharedPreferences("Answers", MODE_PRIVATE);
+        SharedPreferences answerSharedPreferences = getSharedPreferences(Answer.NAME, MODE_PRIVATE);
         Map<String, ?> map = answerSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Answer.decode(answerSharedPreferences.getString(key, ""));

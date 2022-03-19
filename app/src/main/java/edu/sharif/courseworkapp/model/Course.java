@@ -12,7 +12,7 @@ import edu.sharif.courseworkapp.model.user.User;
 import edu.sharif.courseworkapp.utils.CourseImageUtils;
 
 public class Course {
-
+    public static final String NAME = "Courses";
     private static final ArrayList<Course> courses = new ArrayList<>();
     private final int image;
     private final String id;
@@ -26,15 +26,6 @@ public class Course {
         this.professorId = professorId;
         this.studentIds = studentIds;
         this.image = image;
-        courses.add(this);
-    }
-
-    public Course(String courseName, String professorId, ArrayList<String> studentIds) {
-        this.id = UUID.randomUUID().toString().substring(0, 4);
-        this.name = courseName;
-        this.professorId = professorId;
-        this.studentIds = studentIds;
-        this.image = CourseImageUtils.getRandomImage();
         courses.add(this);
     }
 

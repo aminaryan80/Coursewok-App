@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
         android:hint="@string/prompt_username"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -19,6 +19,11 @@
     <string name="action_logout">Logout</string>
     <string name="action_other_courses">Other courses</string>
     <string name="course_img">Course Image</string>
-    <string name="course_search">Search course Id</string>
-    <string name="create_course">Create Course</string>
+    <string name="course_search">Search course</string>
+    <string name="course_create">Create Course</string>
+    <string name="course_name">Course Name</string>
+    <string name="hw_name">Homework Name</string>
+    <string name="hw_question">Question ?</string>
+    <string name="hw_create">Create Homework</string>
+    <string name="hw_search">Search Homework</string>
 </resources>

@@ -3,7 +3,7 @@ package edu.sharif.courseworkapp.model;
 import java.util.UUID;
 
 public class Answer {
-
+    public static final String NAME = "Answers";
     private final String id;
     private final String studentId;
     private final String homeworkId;
