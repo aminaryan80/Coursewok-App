@@ -3,7 +3,6 @@ package edu.sharif.courseworkapp.controller;
 import edu.sharif.courseworkapp.model.user.User;
 
 public class LoginHandler {
-
     private final String username;
     private final String password;
 
@@ -15,7 +14,7 @@ public class LoginHandler {
     }
 
     public User login() {
-        User user = User.getStudentByUsername(this.username);
+        User user = User.getUserByUsername(this.username);
         if (user == null) {
             return null;
         }

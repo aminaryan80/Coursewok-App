@@ -1,34 +1,27 @@
 package edu.sharif.courseworkapp.model.user;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
-public class User {
+public abstract class User {
     public static final String PROFESSOR = "professor";
     public static final String STUDENT = "student";
 
-    static ArrayList<User> users = new ArrayList<User>();
-    private final String id;
-    private String username;
-    private String firstname;
-    private String lastname;
-    private String password;
+    static ArrayList<User> users = new ArrayList<>();
+    protected String username;
+    protected String firstname;
+    protected String lastname;
+    protected String password;
     protected String type;
 
     public User(String username, String password, String firstname, String lastname) {
-        this.id = UUID.randomUUID().toString().substring(0, 4);
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         users.add(this);
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getUsername() {
@@ -63,8 +56,16 @@ public class User {
         this.password = password;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public String getDisplayName() {
         return firstname + " " + lastname;
+    }
+
+    public boolean isStudent() {
+        return this.type.equals(STUDENT);
     }
 
     public static Professor getProfessorByUsername(String username) {
@@ -83,4 +84,19 @@ public class User {
         }
         return null;
     }
+
+    public static User getUserByUsername(String username) {
+        for (User user : users) {
+            if (user.username.equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public static String[] decode(String value) {
+        return value.split(":");
+    }
+
+    public abstract String encode();
 }

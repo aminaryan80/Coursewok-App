@@ -1,7 +1,7 @@
 package edu.sharif.courseworkapp.model.user;
 
 public class Professor extends User {
-
+    public static final String NAME = "Professors";
     private String university;
 
     public Professor(
@@ -18,5 +18,10 @@ public class Professor extends User {
 
     public void setUniversity(String university) {
         this.university = university;
+    }
+
+    @Override
+    public String encode() {
+        return String.format("%s:%s:%s:%s", password, firstname, lastname, university);
     }
 }

@@ -1,6 +1,7 @@
-package edu.sharif.courseworkapp.ui;
+package edu.sharif.courseworkapp.ui.account;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -53,12 +54,11 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 extraTextView.setHint(R.string.university);
             }
-
         });
 
         register_button.setOnClickListener(v -> {
             int selectedId = radio_group.getCheckedRadioButtonId();
-            RadioButton radioButton = (RadioButton) radio_group.findViewById(selectedId);
+            RadioButton radioButton = radio_group.findViewById(selectedId);
             boolean isStudent = radioButton.getText().toString().equals("Student");
             RegisterHandler registerHandler = new RegisterHandler(
                     usernameTextView.getText().toString(),
@@ -69,16 +69,45 @@ public class RegisterActivity extends AppCompatActivity {
                     isStudent
             );
             User user = registerHandler.register();
+            if (user == null) {
+                Toast.makeText(RegisterActivity.this, "Username already exists!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             String userDisplayName = user.getDisplayName();
             String response = userDisplayName + " Registered Successfully.";
             Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_SHORT).show();
+            saveUser(user);
+            goToLogin(user.getUsername(), user.getPassword());
         });
 
-        login_button.setOnClickListener(view -> {
-            Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-            myIntent.putExtra("username", usernameTextView.getText().toString());
-            myIntent.putExtra("password", passwordTextView.getText().toString());
-            RegisterActivity.this.startActivity(myIntent);
-        });
+        login_button.setOnClickListener(view -> goToLogin(
+                usernameTextView.getText().toString(),
+                passwordTextView.getText().toString()
+        ));
+    }
+
+    private void saveUser(User user) {
+        SharedPreferences.Editor sharedPreferencesEditor;
+        String type = user.getType();
+        if (type.equals(User.STUDENT)) {
+            sharedPreferencesEditor = getSharedPreferences("Students", MODE_PRIVATE).edit();
+        } else {
+            sharedPreferencesEditor = getSharedPreferences("Professors", MODE_PRIVATE).edit();
+        }
+        sharedPreferencesEditor.putString(user.getUsername(), user.encode());
+        sharedPreferencesEditor.apply();
+
+    }
+
+    private void goToLogin(String username, String password) {
+        Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+        myIntent.putExtra("username", username);
+        myIntent.putExtra("password", password);
+        RegisterActivity.this.startActivity(myIntent);
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finishAffinity();
     }
 }

@@ -1,4 +1,4 @@
-package edu.sharif.courseworkapp.ui;
+package edu.sharif.courseworkapp.ui.account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.controller.LoginHandler;
 import edu.sharif.courseworkapp.model.user.User;
+import edu.sharif.courseworkapp.ui.panel.ProfessorPanelActivity;
+import edu.sharif.courseworkapp.ui.panel.StudentPanelActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,21 +50,34 @@ public class LoginActivity extends AppCompatActivity {
             if (user == null) {
                 String error_message = "Username doesn't exist or password is wrong";
                 Toast.makeText(LoginActivity.this, error_message, Toast.LENGTH_SHORT).show();
+            } else {
+                String success_message = "User logged in";
+                Toast.makeText(LoginActivity.this, success_message, Toast.LENGTH_SHORT).show();
+                login(user);
             }
-            String success_message = "User logged in";
-            Toast.makeText(LoginActivity.this, success_message, Toast.LENGTH_SHORT).show();
-            login(user);
         });
 
         registerButton.setOnClickListener(view -> {
             Intent myIntent = new Intent(LoginActivity.this, RegisterActivity.class);
             myIntent.putExtra("username", usernameTextView.getText().toString());
             myIntent.putExtra("password", passwordTextView.getText().toString());
-            LoginActivity.this.startActivity(myIntent);
+            startActivity(myIntent);
         });
     }
 
     private void login(User user) {
-        //pass
+        Intent intent;
+        if (user.isStudent()) {
+            intent = new Intent(LoginActivity.this, StudentPanelActivity.class);
+        } else {
+            intent = new Intent(LoginActivity.this, ProfessorPanelActivity.class);
+        }
+        intent.putExtra("username", user.getUsername());
+        startActivity(intent);
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finishAffinity();
     }
 }
