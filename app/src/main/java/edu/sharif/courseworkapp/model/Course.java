@@ -1,15 +1,19 @@
 package edu.sharif.courseworkapp.model;
 
+import android.content.res.Resources;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
+import edu.sharif.courseworkapp.model.user.Student;
 import edu.sharif.courseworkapp.model.user.User;
 import edu.sharif.courseworkapp.utils.CourseImageUtils;
 
 public class Course {
 
-    private static ArrayList<Course> courses = new ArrayList<>();
+    private static final ArrayList<Course> courses = new ArrayList<>();
     private final int image;
     private final String id;
     private final String name;
@@ -48,6 +52,33 @@ public class Course {
         return new ArrayList<>(Arrays.asList(items));
     }
 
+    public static List<Course> getStudentCourses(String username) {
+        ArrayList<Course> filtered = new ArrayList<>();
+        for (Course course : courses) {
+            ArrayList<String> students = course.getStudents();
+            for (String studentId : students) {
+                if (studentId.equals(username)) {
+                    filtered.add(course);
+                }
+            }
+        }
+        return filtered;
+    }
+
+    public static List<Course> getProfessorCourses(String username) {
+        ArrayList<Course> filtered = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.professorId.equals(username)) {
+                filtered.add(course);
+            }
+        }
+        return filtered;
+    }
+
+    public static List<Course> getAllCourses() {
+        return courses;
+    }
+
     public String getId() {
         return id;
     }
@@ -77,6 +108,10 @@ public class Course {
     }
 
     public void addStudent(String studentId) {
+        Student student = Student.getStudentByUsername(studentId);
+        if (student == null) {
+            throw new Resources.NotFoundException("Student not found.");
+        }
         this.studentIds.add(studentId);
     }
 
@@ -91,5 +126,20 @@ public class Course {
 
     public static String[] decode(String value) {
         return value.split(":");
+    }
+
+    public String encode() {
+        String studentIdsString = encodeArrayList(studentIds);
+        return String.format("%s:%s:%s:%s", name, professorId, image, studentIdsString);
+    }
+
+    private String encodeArrayList(ArrayList<String> arrayList) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < arrayList.size(); i++) {
+            result.append(arrayList.get(i));
+            if (i + 1 != arrayList.size())
+                result.append(",");
+        }
+        return result.toString();
     }
 }

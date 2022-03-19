@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -84,13 +83,6 @@ public abstract class UserCoursePage extends AppCompatActivity {
     }
 
     private void applyQuery(String query) {
-        boolean hasMatch = filterQuery(query);
-        if (!hasMatch) {
-            Toast.makeText(UserCoursePage.this, "No Match found",Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private boolean filterQuery(String query) {
         ArrayList<Homework> filtered = new ArrayList<>();
         for (Homework homework : this.homeworkList) {
             if (homework.getId().contains(query) || homework.getName().toLowerCase().contains(query)) {
@@ -98,11 +90,10 @@ public abstract class UserCoursePage extends AppCompatActivity {
             }
         }
         homeworkListAdapter.setFilter(filtered);
-        return homeworkList.size() != 0;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    protected void populateHomeworkList(){
+    protected void populateHomeworkList() {
         Homework potato = new Homework("Potato", "1");
         Homework onion = new Homework("Onion", "2");
         Homework cabbage = new Homework("Cabbage", "3");

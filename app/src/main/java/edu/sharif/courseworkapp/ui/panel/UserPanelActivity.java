@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +13,8 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewCourseListAdapter;
+import edu.sharif.courseworkapp.adapter.RecyclerViewNewCourseListAdapter;
 import edu.sharif.courseworkapp.model.Course;
-import edu.sharif.courseworkapp.model.user.Professor;
 import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
 
@@ -26,6 +25,10 @@ public abstract class UserPanelActivity extends AppCompatActivity {
 
     protected RecyclerViewCourseListAdapter getCourseListAdapter() {
         return new RecyclerViewCourseListAdapter(courseList, getApplicationContext(), getUsername());
+    }
+
+    protected RecyclerViewNewCourseListAdapter getNewCourseListAdapter() {
+        return new RecyclerViewNewCourseListAdapter(courseList, UserPanelActivity.this, getUsername());
     }
 
     protected String getUsername() {
@@ -80,13 +83,6 @@ public abstract class UserPanelActivity extends AppCompatActivity {
     }
 
     private void applyQuery(String query) {
-        boolean hasMatch = filterQuery(query);
-        if (!hasMatch) {
-            Toast.makeText(UserPanelActivity.this, "No Match found", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private boolean filterQuery(String query) {
         ArrayList<Course> filtered = new ArrayList<>();
         for (Course course : this.courseList) {
             if (course.getId().contains(query) || course.getName().toLowerCase().contains(query)
@@ -94,36 +90,25 @@ public abstract class UserPanelActivity extends AppCompatActivity {
                 filtered.add(course);
             }
         }
-        filtered = filterUser(filtered);
         courseListAdapter.setFilter(filtered);
-        return filtered.size() != 0;
     }
 
-    protected abstract ArrayList<Course> filterUser(ArrayList<Course> courses);
-
     @SuppressLint("NotifyDataSetChanged")
-    protected void populateCourseList() {
-//        new Professor("Prof1", "123", "Kaley", "Thomas", "Sharif");
-        new Professor("Prof2", "123", "Jeffery", "Mercier", "Sharif");
-        new Professor("Prof3", "123", "Brian", "Brooks", "Sharif");
-        new Professor("Prof4", "123", "Robert", "Saenz", "Sharif");
-        Course potato = new Course("Potato", "Prof1");
-        Course onion = new Course("Onion", "Prof2");
-        Course cabbage = new Course("Cabbage", "Prof3");
-        Course cauliflower = new Course("Cauliflower", "Prof4");
-        courseList.add(potato);
-//        courseList.add(onion);
-//        courseList.add(cabbage);
-//        courseList.add(cauliflower);
-        courseList.add(potato);
-//        courseList.add(onion);
-//        courseList.add(cabbage);
-//        courseList.add(cauliflower);
-        courseList.add(potato);
-//        courseList.add(onion);
-//        courseList.add(cabbage);
-//        courseList.add(cauliflower);
+    protected void populate() {
+        List<Course> courses = populateCourseList();
+        courseList.clear();
+        allCourseList.clear();
+        courseList.addAll(courses);
         allCourseList.addAll(courseList);
         courseListAdapter.notifyDataSetChanged();
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populate();
+    }
+
+    protected abstract List<Course> populateCourseList();
 }

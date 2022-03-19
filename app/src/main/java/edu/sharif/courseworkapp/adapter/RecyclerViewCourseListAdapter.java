@@ -20,13 +20,12 @@ import edu.sharif.courseworkapp.model.Course;
 import edu.sharif.courseworkapp.model.user.User;
 import edu.sharif.courseworkapp.ui.course.ProfessorCoursePage;
 import edu.sharif.courseworkapp.ui.course.StudentCoursePage;
-import edu.sharif.courseworkapp.utils.CourseImageUtils;
 
 public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         RecyclerViewCourseListAdapter.CourseViewHolder> {
-    private final String username;
-    private final Context context;
-    private List<Course> courseList;
+    protected final String username;
+    protected final Context context;
+    protected List<Course> courseList;
 
     public RecyclerViewCourseListAdapter(
             List<Course> courseList, Context context, String username

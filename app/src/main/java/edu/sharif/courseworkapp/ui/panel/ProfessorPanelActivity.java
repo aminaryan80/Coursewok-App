@@ -1,5 +1,6 @@
 package edu.sharif.courseworkapp.ui.panel;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,9 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.model.Course;
@@ -39,9 +39,7 @@ public class ProfessorPanelActivity extends UserPanelActivity {
         setContentView(R.layout.activity_professor_panel);
 
         FloatingActionButton addButton = findViewById(R.id.fab);
-        addButton.setOnClickListener(view ->
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show()
+        addButton.setOnClickListener(view -> goToCourseNewClass()
         );
 
         RecyclerView courseRecyclerView = findViewById(R.id.idRecyclerViewCourseList);
@@ -50,17 +48,17 @@ public class ProfessorPanelActivity extends UserPanelActivity {
         LinearLayoutManager verticalLayoutManager = getVerticalLayoutManager();
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(courseListAdapter);
-        populateCourseList();
+        populate();
+    }
+
+    private void goToCourseNewClass() {
+        Intent intent = new Intent(ProfessorPanelActivity.this, CreateNewCourseActivity.class);
+        intent.putExtra("username", getUsername());
+        startActivity(intent);
     }
 
     @Override
-    protected ArrayList<Course> filterUser(ArrayList<Course> courses) {
-        ArrayList<Course> filtered = new ArrayList<>();
-        for (Course course : courses) {
-            if (course.getProfessorId().equals(getUsername())) {
-                filtered.add(course);
-            }
-        }
-        return filtered;
+    protected List<Course> populateCourseList() {
+        return Course.getProfessorCourses(getUsername());
     }
 }

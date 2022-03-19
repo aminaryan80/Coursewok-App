@@ -20,4 +20,5 @@
     <string name="action_other_courses">Other courses</string>
     <string name="course_img">Course Image</string>
     <string name="course_search">Search course Id</string>
+    <string name="create_course">Create Course</string>
 </resources>

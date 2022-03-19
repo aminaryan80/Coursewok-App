@@ -69,6 +69,10 @@ public class RegisterActivity extends AppCompatActivity {
                     isStudent
             );
             User user = registerHandler.register();
+            if (user == null) {
+                Toast.makeText(RegisterActivity.this, "Username already exists!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             String userDisplayName = user.getDisplayName();
             String response = userDisplayName + " Registered Successfully.";
             Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_SHORT).show();
