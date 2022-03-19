@@ -16,7 +16,7 @@ import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewCourseListAdapter;
 import edu.sharif.courseworkapp.model.Course;
 import edu.sharif.courseworkapp.model.user.Professor;
-import edu.sharif.courseworkapp.ui.LoginActivity;
+import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
 
 public abstract class UserPanelActivity extends AppCompatActivity {
@@ -82,24 +82,28 @@ public abstract class UserPanelActivity extends AppCompatActivity {
     private void applyQuery(String query) {
         boolean hasMatch = filterQuery(query);
         if (!hasMatch) {
-            Toast.makeText(UserPanelActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+            Toast.makeText(UserPanelActivity.this, "No Match found", Toast.LENGTH_LONG).show();
         }
     }
 
     private boolean filterQuery(String query) {
         ArrayList<Course> filtered = new ArrayList<>();
         for (Course course : this.courseList) {
-            if (course.getId().contains(query) || course.getName().toLowerCase().contains(query)) {
+            if (course.getId().contains(query) || course.getName().toLowerCase().contains(query)
+            ) {
                 filtered.add(course);
             }
         }
+        filtered = filterUser(filtered);
         courseListAdapter.setFilter(filtered);
         return filtered.size() != 0;
     }
 
+    protected abstract ArrayList<Course> filterUser(ArrayList<Course> courses);
+
     @SuppressLint("NotifyDataSetChanged")
     protected void populateCourseList() {
-        new Professor("Prof1", "123", "Kaley", "Thomas", "Sharif");
+//        new Professor("Prof1", "123", "Kaley", "Thomas", "Sharif");
         new Professor("Prof2", "123", "Jeffery", "Mercier", "Sharif");
         new Professor("Prof3", "123", "Brian", "Brooks", "Sharif");
         new Professor("Prof4", "123", "Robert", "Saenz", "Sharif");
@@ -108,17 +112,17 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         Course cabbage = new Course("Cabbage", "Prof3");
         Course cauliflower = new Course("Cauliflower", "Prof4");
         courseList.add(potato);
-        courseList.add(onion);
-        courseList.add(cabbage);
-        courseList.add(cauliflower);
+//        courseList.add(onion);
+//        courseList.add(cabbage);
+//        courseList.add(cauliflower);
         courseList.add(potato);
-        courseList.add(onion);
-        courseList.add(cabbage);
-        courseList.add(cauliflower);
+//        courseList.add(onion);
+//        courseList.add(cabbage);
+//        courseList.add(cauliflower);
         courseList.add(potato);
-        courseList.add(onion);
-        courseList.add(cabbage);
-        courseList.add(cauliflower);
+//        courseList.add(onion);
+//        courseList.add(cabbage);
+//        courseList.add(cauliflower);
         allCourseList.addAll(courseList);
         courseListAdapter.notifyDataSetChanged();
     }

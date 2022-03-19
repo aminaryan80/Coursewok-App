@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 import edu.sharif.courseworkapp.R;
+import edu.sharif.courseworkapp.model.Course;
 
 public class ProfessorPanelActivity extends UserPanelActivity {
     private LinearLayoutManager getVerticalLayoutManager() {
@@ -48,5 +51,16 @@ public class ProfessorPanelActivity extends UserPanelActivity {
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(courseListAdapter);
         populateCourseList();
+    }
+
+    @Override
+    protected ArrayList<Course> filterUser(ArrayList<Course> courses) {
+        ArrayList<Course> filtered = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getProfessorId().equals(getUsername())) {
+                filtered.add(course);
+            }
+        }
+        return filtered;
     }
 }

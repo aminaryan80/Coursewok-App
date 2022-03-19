@@ -1,23 +1,36 @@
 package edu.sharif.courseworkapp.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 import edu.sharif.courseworkapp.model.user.User;
+import edu.sharif.courseworkapp.utils.CourseImageUtils;
 
 public class Course {
 
     private static ArrayList<Course> courses = new ArrayList<>();
+    private final int image;
     private final String id;
     private final String name;
     private final String professorId;
     private ArrayList<String> studentIds;
+
+    public Course(String id, String courseName, String professorId, int image, ArrayList<String> studentIds) {
+        this.id = id;
+        this.name = courseName;
+        this.professorId = professorId;
+        this.studentIds = studentIds;
+        this.image = image;
+        courses.add(this);
+    }
 
     public Course(String courseName, String professorId, ArrayList<String> studentIds) {
         this.id = UUID.randomUUID().toString().substring(0, 4);
         this.name = courseName;
         this.professorId = professorId;
         this.studentIds = studentIds;
+        this.image = CourseImageUtils.getRandomImage();
         courses.add(this);
     }
 
@@ -26,7 +39,13 @@ public class Course {
         this.name = courseName;
         this.professorId = professorId;
         this.studentIds = new ArrayList<>();
+        this.image = CourseImageUtils.getRandomImage();
         courses.add(this);
+    }
+
+    public static ArrayList<String> decodeArrayList(String value) {
+        String[] items = value.split(",");
+        return new ArrayList<>(Arrays.asList(items));
     }
 
     public String getId() {
@@ -43,6 +62,10 @@ public class Course {
 
     public String getProfessorName() {
         return User.getProfessorByUsername(professorId).getDisplayName();
+    }
+
+    public int getImage() {
+        return image;
     }
 
     public ArrayList<String> getStudents() {
@@ -64,5 +87,9 @@ public class Course {
             }
         }
         return null;
+    }
+
+    public static String[] decode(String value) {
+        return value.split(":");
     }
 }

@@ -75,8 +75,7 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
         Homework homework = homeworkList.get(position);
         holder.getNameTextView().setText(homework.getName());
 
-        int randomImage = HomeworkImageUtils.getRandomImage();
-        holder.getHomeworkImageView().setImageResource(randomImage);
+        holder.getHomeworkImageView().setImageResource(homework.getImage());
 
         holder.getHomeworkItem().setOnClickListener(view -> {
             String productName = homeworkList.get(position).getName();

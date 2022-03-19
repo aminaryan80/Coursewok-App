@@ -19,4 +19,9 @@ public class Professor extends User {
     public void setUniversity(String university) {
         this.university = university;
     }
+
+    @Override
+    public String encode() {
+        return String.format("%s:%s:%s:%s:%s", username, password, firstname, lastname, university);
+    }
 }
