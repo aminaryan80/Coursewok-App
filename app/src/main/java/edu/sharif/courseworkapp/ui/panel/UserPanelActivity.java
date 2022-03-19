@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +27,32 @@ public abstract class UserPanelActivity extends AppCompatActivity {
     protected List<Course> allCourseList = new ArrayList<>();
 
     protected RecyclerViewCourseListAdapter getCourseListAdapter() {
-        return new RecyclerViewCourseListAdapter(courseList, getApplicationContext(), getUsername());
+        return new RecyclerViewCourseListAdapter(
+                courseList, getApplicationContext(), getUsername()
+        );
     }
 
     protected RecyclerViewNewCourseListAdapter getNewCourseListAdapter() {
-        return new RecyclerViewNewCourseListAdapter(courseList, UserPanelActivity.this, getUsername());
+        return new RecyclerViewNewCourseListAdapter(
+                courseList, UserPanelActivity.this, getUsername()
+        );
+    }
+
+    protected LinearLayoutManager getVerticalLayoutManager() {
+        return new LinearLayoutManager(
+                UserPanelActivity.this,
+                LinearLayoutManager.VERTICAL,
+                false
+        );
+    }
+
+    protected void addDivider(RecyclerView courseRecyclerView) {
+        courseRecyclerView.addItemDecoration(
+                new DividerItemDecoration(
+                        UserPanelActivity.this,
+                        LinearLayoutManager.VERTICAL
+                )
+        );
     }
 
     protected String getUsername() {
@@ -82,11 +106,17 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populate();
+    }
+
     private void applyQuery(String query) {
         ArrayList<Course> filtered = new ArrayList<>();
         for (Course course : this.courseList) {
-            if (course.getId().contains(query) || course.getName().toLowerCase().contains(query)
-            ) {
+            if (course.getId().contains(query) || course.getName().toLowerCase().contains(query)) {
                 filtered.add(course);
             }
         }
@@ -101,13 +131,6 @@ public abstract class UserPanelActivity extends AppCompatActivity {
         courseList.addAll(courses);
         allCourseList.addAll(courseList);
         courseListAdapter.notifyDataSetChanged();
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    protected void onResume() {
-        super.onResume();
-        populate();
     }
 
     protected abstract List<Course> populateCourseList();

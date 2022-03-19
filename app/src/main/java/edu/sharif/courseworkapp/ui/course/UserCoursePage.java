@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,30 @@ public abstract class UserCoursePage extends AppCompatActivity {
         return new RecyclerViewHomeworkListAdapter(
                 homeworkList, getApplicationContext(),
                 getUsername(), getCourseId());
+    }
+
+    protected LinearLayoutManager getVerticalLayoutManager() {
+        return new LinearLayoutManager(
+                UserCoursePage.this,
+                LinearLayoutManager.VERTICAL,
+                false
+        );
+    }
+
+    protected void addDivider(RecyclerView courseRecyclerView) {
+        courseRecyclerView.addItemDecoration(
+                new DividerItemDecoration(
+                        UserCoursePage.this,
+                        LinearLayoutManager.VERTICAL
+                )
+        );
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populate();
     }
 
     private void searchOnClose(SearchView searchView) {
@@ -93,24 +120,16 @@ public abstract class UserCoursePage extends AppCompatActivity {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    protected void populateHomeworkList() {
-        Homework potato = new Homework("Potato", "1");
-        Homework onion = new Homework("Onion", "2");
-        Homework cabbage = new Homework("Cabbage", "3");
-        Homework cauliflower = new Homework("Cauliflower", "4");
-        homeworkList.add(potato);
-        homeworkList.add(onion);
-        homeworkList.add(cabbage);
-        homeworkList.add(cauliflower);
-        homeworkList.add(potato);
-        homeworkList.add(onion);
-        homeworkList.add(cabbage);
-        homeworkList.add(cauliflower);
-        homeworkList.add(potato);
-        homeworkList.add(onion);
-        homeworkList.add(cabbage);
-        homeworkList.add(cauliflower);
+    protected void populate() {
+        List<Homework> homeworks = populateHomeworkList();
+        homeworkList.clear();
+        allHomeworkList.clear();
+        homeworkList.addAll(homeworks);
         allHomeworkList.addAll(homeworkList);
         homeworkListAdapter.notifyDataSetChanged();
+    }
+
+    private List<Homework> populateHomeworkList() {
+        return Homework.getCourseHomeworks(getCourseId());
     }
 }

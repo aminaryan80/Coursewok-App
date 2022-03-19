@@ -1,7 +1,7 @@
 package edu.sharif.courseworkapp.model.user;
 
 public class Student extends User {
-
+    public static final String NAME = "Students";
     private String studentNumber;
 
     public Student(

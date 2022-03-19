@@ -1,56 +1,36 @@
 package edu.sharif.courseworkapp.ui.course;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
-import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityStudentCoursePageBinding;
 import edu.sharif.courseworkapp.model.Course;
 
 public class StudentCoursePage extends UserCoursePage {
-
     private ActivityStudentCoursePageBinding binding;
-    private String username;
-    private String courseId;
 
     private void setBinding() {
         binding = ActivityStudentCoursePageBinding.inflate(getLayoutInflater());
     }
 
-    private LinearLayoutManager getVerticalLayoutManager() {
-        return new LinearLayoutManager(
-                StudentCoursePage.this,
-                LinearLayoutManager.VERTICAL,
-                false
-        );
-    }
-
-    private void addDivider(RecyclerView courseRecyclerView) {
-        courseRecyclerView.addItemDecoration(
-                new DividerItemDecoration(
-                        StudentCoursePage.this,
-                        LinearLayoutManager.VERTICAL
-                )
-        );
-    }
-
     private void handleToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        String courseId = getCourseId();
+        Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
-        CollapsingToolbarLayout coll_toolbar = findViewById(R.id.toolbar_layout);
-        String courseName = Course.getCourseById(courseId).getName();
-        coll_toolbar.setTitle(courseName);
-        coll_toolbar.setCollapsedTitleTextColor(Color.WHITE);
-        coll_toolbar.setExpandedTitleColor(Color.WHITE);
+        CollapsingToolbarLayout collToolbar = binding.toolbarLayout;
+
+        Course course = Course.getCourseById(courseId);
+        assert course != null;
+        collToolbar.setTitle(course.getName());
+        collToolbar.setCollapsedTitleTextColor(Color.WHITE);
+        collToolbar.setExpandedTitleColor(Color.WHITE);
     }
 
     private void handleRecyclerView() {
@@ -60,24 +40,16 @@ public class StudentCoursePage extends UserCoursePage {
         LinearLayoutManager verticalLayoutManager = getVerticalLayoutManager();
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(homeworkListAdapter);
-        populateHomeworkList();
+        populate();
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        get_extras();
         setBinding();
         setContentView(binding.getRoot());
 
         handleToolbar();
         handleRecyclerView();
-    }
-
-    private void get_extras() {
-        Intent intent = getIntent();
-        this.username = intent.getStringExtra("username");
-        this.courseId = intent.getStringExtra("courseId");
     }
 }

@@ -32,6 +32,7 @@
             android:name=".ui.course.StudentCoursePage"
             android:theme="@style/Theme.CourseworkApp.NoActionBar" />
         <activity android:name=".ui.panel.StudentJoinCourseActivity" />
+        <activity android:name=".ui.course.CreateNewHomeworkActivity" />
     </application>
 
 </manifest>

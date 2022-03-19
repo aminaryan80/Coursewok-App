@@ -1,20 +1,20 @@
 package edu.sharif.courseworkapp.ui.course;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityProfessorCoursePageBinding;
+import edu.sharif.courseworkapp.model.user.Professor;
+import edu.sharif.courseworkapp.model.user.User;
 
 public class ProfessorCoursePage extends UserCoursePage {
     private ActivityProfessorCoursePageBinding binding;
@@ -23,37 +23,20 @@ public class ProfessorCoursePage extends UserCoursePage {
         binding = ActivityProfessorCoursePageBinding.inflate(getLayoutInflater());
     }
 
-    protected LinearLayoutManager getVerticalLayoutManager() {
-        return new LinearLayoutManager(
-                ProfessorCoursePage.this,
-                LinearLayoutManager.VERTICAL,
-                false
-        );
-    }
-
-    protected void addDivider(RecyclerView courseRecyclerView) {
-        courseRecyclerView.addItemDecoration(
-                new DividerItemDecoration(
-                        ProfessorCoursePage.this,
-                        LinearLayoutManager.VERTICAL
-                )
-        );
-    }
-
     private void handleFab() {
         FloatingActionButton fab = binding.fab;
-        fab.setOnClickListener(view ->
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show());
+        fab.setOnClickListener(view -> goToCreateNewHomework());
     }
 
     private void handleToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
-        CollapsingToolbarLayout coll_toolbar = findViewById(R.id.toolbar_layout);
-        coll_toolbar.setTitle("Class Name - Prof Name");
-        coll_toolbar.setCollapsedTitleTextColor(Color.WHITE);
-        coll_toolbar.setExpandedTitleColor(Color.WHITE);
+        CollapsingToolbarLayout collToolbar = binding.toolbarLayout;
+
+        Professor professor = User.getProfessorByUsername(getUsername());
+        collToolbar.setTitle(professor.getDisplayName());
+        collToolbar.setCollapsedTitleTextColor(Color.WHITE);
+        collToolbar.setExpandedTitleColor(Color.WHITE);
     }
 
     private void handleRecyclerView() {
@@ -63,13 +46,18 @@ public class ProfessorCoursePage extends UserCoursePage {
         LinearLayoutManager verticalLayoutManager = getVerticalLayoutManager();
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(homeworkListAdapter);
-        populateHomeworkList();
+        populate();
+    }
+
+    private void goToCreateNewHomework() {
+        Intent intent = new Intent(ProfessorCoursePage.this, CreateNewHomeworkActivity.class);
+        intent.putExtra("courseId", getCourseId());
+        startActivity(intent);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setBinding();
         setContentView(binding.getRoot());
 
