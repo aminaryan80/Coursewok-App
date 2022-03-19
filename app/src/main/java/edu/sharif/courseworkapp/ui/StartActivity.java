@@ -17,12 +17,16 @@ import edu.sharif.courseworkapp.model.user.Student;
 import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
 public class StartActivity extends AppCompatActivity {
+    static boolean checkFirstTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loadData();
+        if (checkFirstTime) {
+            loadData();
+            checkFirstTime = false;
+        }
 
         Intent intent = new Intent(StartActivity.this, LoginActivity.class);
         startActivity(intent);
@@ -59,7 +63,10 @@ public class StartActivity extends AppCompatActivity {
         Map<String, ?> map = courseSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Course.decode(courseSharedPreferences.getString(key, ""));
-            ArrayList<String> studentIds = Course.decodeArrayList(data[3]);
+            String studentIdsString = "";
+            if (data.length == 4)
+                studentIdsString = data[3];
+            ArrayList<String> studentIds = Course.decodeArrayList(studentIdsString);
             new Course(key, data[0], data[1], Integer.parseInt(data[2]), studentIds);
         }
     }

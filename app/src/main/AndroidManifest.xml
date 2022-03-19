@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseworkApp">
         <activity
+            android:name=".ui.panel.CreateNewCourseActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.StartActivity"
             android:exported="true">
             <intent-filter>
@@ -28,6 +31,7 @@
         <activity
             android:name=".ui.course.StudentCoursePage"
             android:theme="@style/Theme.CourseworkApp.NoActionBar" />
+        <activity android:name=".ui.panel.StudentJoinCourseActivity" />
     </application>
 
 </manifest>

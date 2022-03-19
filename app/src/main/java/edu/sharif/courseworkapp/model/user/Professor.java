@@ -22,6 +22,6 @@ public class Professor extends User {
 
     @Override
     public String encode() {
-        return String.format("%s:%s:%s:%s:%s", username, password, firstname, lastname, university);
+        return String.format("%s:%s:%s:%s", password, firstname, lastname, university);
     }
 }

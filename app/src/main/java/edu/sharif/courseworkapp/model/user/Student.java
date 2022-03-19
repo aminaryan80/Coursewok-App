@@ -22,6 +22,6 @@ public class Student extends User {
 
     @Override
     public String encode() {
-        return String.format("%s:%s:%s:%s:%s", username, password, firstname, lastname, studentNumber);
+        return String.format("%s:%s:%s:%s", password, firstname, lastname, studentNumber);
     }
 }
