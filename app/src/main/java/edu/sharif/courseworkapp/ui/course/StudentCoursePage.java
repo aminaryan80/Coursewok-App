@@ -36,7 +36,7 @@ public class StudentCoursePage extends UserCoursePage {
     private void handleRecyclerView() {
         RecyclerView courseRecyclerView = binding.idRecyclerViewHomeworkList;
         addDivider(courseRecyclerView);
-        homeworkListAdapter = getCourseListAdapter();
+        homeworkListAdapter = getHomeworkListAdapter();
         LinearLayoutManager verticalLayoutManager = getVerticalLayoutManager();
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(homeworkListAdapter);

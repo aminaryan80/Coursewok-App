@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import edu.sharif.courseworkapp.adapter.RecyclerViewHomeworkListAdapter;
+import edu.sharif.courseworkapp.adapter.RecyclerViewProfessorHomeworkListAdapter;
 import edu.sharif.courseworkapp.databinding.ActivityProfessorCoursePageBinding;
 import edu.sharif.courseworkapp.model.user.Professor;
 import edu.sharif.courseworkapp.model.user.User;
@@ -28,6 +30,14 @@ public class ProfessorCoursePage extends UserCoursePage {
         fab.setOnClickListener(view -> goToCreateNewHomework());
     }
 
+    // TODO: use this KARANEH
+    @Override
+    protected RecyclerViewHomeworkListAdapter getHomeworkListAdapter() {
+        return new RecyclerViewProfessorHomeworkListAdapter(
+                homeworkList, getApplicationContext(),
+                getUsername(), getCourseId());
+    }
+
     private void handleToolbar() {
         Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
@@ -42,7 +52,7 @@ public class ProfessorCoursePage extends UserCoursePage {
     private void handleRecyclerView() {
         RecyclerView courseRecyclerView = binding.idRecyclerViewHomeworkList;
         addDivider(courseRecyclerView);
-        homeworkListAdapter = getCourseListAdapter();
+        homeworkListAdapter = getHomeworkListAdapter();
         LinearLayoutManager verticalLayoutManager = getVerticalLayoutManager();
         courseRecyclerView.setLayoutManager(verticalLayoutManager);
         courseRecyclerView.setAdapter(homeworkListAdapter);

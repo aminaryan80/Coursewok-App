@@ -20,10 +20,10 @@ import edu.sharif.courseworkapp.model.Homework;
 
 public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
         RecyclerViewHomeworkListAdapter.HomeworkViewHolder> {
-    private final String username;
-    private final String courseId;
-    private final Context context;
-    private List<Homework> homeworkList;
+    protected final String username;
+    protected final String courseId;
+    protected final Context context;
+    protected List<Homework> homeworkList;
 
     public RecyclerViewHomeworkListAdapter(
             List<Homework> homeworkList, Context context,
@@ -76,13 +76,8 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
 
         holder.getHomeworkImageView().setImageResource(homework.getImage());
 
-        holder.getHomeworkItem().setOnClickListener(view -> {
-            String productName = homeworkList.get(position).getName();
-            Toast.makeText(context, productName + " is selected", Toast.LENGTH_SHORT).show();
-        });
-
         // TODO: open homework page
-        holder.getNameTextView().setOnClickListener(view -> {
+        holder.getHomeworkItem().setOnClickListener(view -> {
             String productName = homeworkList.get(position).getName();
             Toast.makeText(context, productName + " is selected", Toast.LENGTH_SHORT).show();
         });

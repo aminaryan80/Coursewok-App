@@ -114,9 +114,11 @@ public abstract class UserPanelActivity extends AppCompatActivity {
     }
 
     private void applyQuery(String query) {
+        query = query.toLowerCase();
         ArrayList<Course> filtered = new ArrayList<>();
         for (Course course : this.courseList) {
-            if (course.getId().contains(query) || course.getName().toLowerCase().contains(query)) {
+            if (course.getId().toLowerCase().contains(query) ||
+                    course.getName().toLowerCase().contains(query)) {
                 filtered.add(course);
             }
         }

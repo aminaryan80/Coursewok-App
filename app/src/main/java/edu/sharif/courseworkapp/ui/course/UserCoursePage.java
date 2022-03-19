@@ -16,6 +16,7 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewHomeworkListAdapter;
+import edu.sharif.courseworkapp.adapter.RecyclerViewProfessorHomeworkListAdapter;
 import edu.sharif.courseworkapp.model.Homework;
 import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
@@ -32,7 +33,7 @@ public abstract class UserCoursePage extends AppCompatActivity {
         return getIntent().getStringExtra("courseId");
     }
 
-    protected RecyclerViewHomeworkListAdapter getCourseListAdapter() {
+    protected RecyclerViewHomeworkListAdapter getHomeworkListAdapter() {
         return new RecyclerViewHomeworkListAdapter(
                 homeworkList, getApplicationContext(),
                 getUsername(), getCourseId());
@@ -110,9 +111,11 @@ public abstract class UserCoursePage extends AppCompatActivity {
     }
 
     private void applyQuery(String query) {
+        query = query.toLowerCase();
         ArrayList<Homework> filtered = new ArrayList<>();
         for (Homework homework : this.homeworkList) {
-            if (homework.getId().contains(query) || homework.getName().toLowerCase().contains(query)) {
+            if (homework.getId().toLowerCase().contains(query) ||
+                    homework.getName().toLowerCase().contains(query)) {
                 filtered.add(homework);
             }
         }
