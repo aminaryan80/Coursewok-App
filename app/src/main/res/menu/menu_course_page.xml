@@ -13,5 +13,4 @@
         android:title="@string/hw_search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
-
 </menu>
