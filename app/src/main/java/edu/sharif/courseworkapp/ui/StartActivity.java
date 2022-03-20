@@ -85,7 +85,7 @@ public class StartActivity extends AppCompatActivity {
         Map<String, ?> map = answerSharedPreferences.getAll();
         for (String key : map.keySet()) {
             String[] data = Answer.decode(answerSharedPreferences.getString(key, ""));
-            new Answer(key, data[0], data[1], data[2], data[3]);
+            new Answer(key, data[0], data[1], data[2], data[3], Integer.parseInt(data[4]));
         }
     }
 }

@@ -28,4 +28,5 @@
     <string name="hw_search">Search Homework</string>
     <string name="hw_answer">Your Answer</string>
     <string name="hw_submit">Submit Answer</string>
+    <string name="hw_edit_name">Edit Name</string>
 </resources>

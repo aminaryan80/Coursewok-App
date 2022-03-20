@@ -80,7 +80,6 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
 
         holder.getHomeworkImageView().setImageResource(homework.getImage());
 
-        // TODO: open homework page
         holder.getHomeworkItem().setOnClickListener(view -> handleOnClickItem(position));
     }
 

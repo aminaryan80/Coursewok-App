@@ -4,22 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import edu.sharif.courseworkapp.utils.AnswerImageUtils;
+
 public class Answer {
     public static final String NAME = "Answers";
     private static final ArrayList<Answer> answers = new ArrayList<>();
     private final String id;
     private final String studentId;
     private final String homeworkId;
+    private final int image;
     private String answer;
     private String grade;
 
 
-    public Answer(String id, String studentId, String homeworkId, String answer, String grade) {
+    public Answer(String id, String studentId, String homeworkId, String answer, String grade, int image) {
         this.id = id;
         this.studentId = studentId;
         this.homeworkId = homeworkId;
         this.answer = answer;
         this.grade = grade;
+        this.image = image;
         answers.add(this);
     }
 
@@ -29,6 +33,7 @@ public class Answer {
         this.homeworkId = homeworkId;
         this.answer = answer;
         this.grade = "";
+        this.image = AnswerImageUtils.getRandomImage();
         answers.add(this);
     }
 
@@ -58,6 +63,10 @@ public class Answer {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public int getImage() {
+        return image;
     }
 
     public static Answer getAnswerById(String answerId) {
@@ -98,7 +107,7 @@ public class Answer {
     }
 
     public String encode() {
-        return String.format("%s:%s:%s:%s", studentId, homeworkId, answer, grade);
+        return String.format("%s:%s:%s:%s:%s", studentId, homeworkId, answer, grade, image);
     }
 
     public static String[] decode(String value) {
