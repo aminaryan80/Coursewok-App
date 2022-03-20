@@ -13,13 +13,13 @@
 
     <TextView
         android:id="@+id/textViewGrade"
-        android:layout_width="wrap_content"
+        android:layout_width="120"
         android:layout_height="wrap_content"
         android:layout_marginStart="۰dp"
         android:layout_marginTop="50dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textViewLastSubmittedAnswer"
         app:layout_constraintTop_toBottomOf="@+id/submit_button" />
 
@@ -80,12 +80,12 @@
 
     <TextView
         android:id="@+id/textViewLastSubmittedAnswer"
-        android:layout_width="wrap_content"
+        android:layout_width="220"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submit_button" />
 
