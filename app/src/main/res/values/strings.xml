@@ -26,4 +26,6 @@
     <string name="hw_question">Question ?</string>
     <string name="hw_create">Create Homework</string>
     <string name="hw_search">Search Homework</string>
+    <string name="hw_answer">Your Answer</string>
+    <string name="hw_submit">Submit Answer</string>
 </resources>
