@@ -2,16 +2,28 @@ package edu.sharif.courseworkapp.ui.homework;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import edu.sharif.courseworkapp.R;
+import edu.sharif.courseworkapp.databinding.ActivityProfessorCoursePageBinding;
+import edu.sharif.courseworkapp.databinding.ActivityStudentHomeworkPageBinding;
 import edu.sharif.courseworkapp.model.Answer;
+import edu.sharif.courseworkapp.model.Course;
 import edu.sharif.courseworkapp.model.Homework;
 public class StudentHomeworkPage extends AppCompatActivity {
+    private ActivityStudentHomeworkPageBinding binding;
+
+    private void setBinding() {
+        binding = ActivityStudentHomeworkPageBinding.inflate(getLayoutInflater());
+    }
 
 
     protected String getUsername() {
@@ -26,8 +38,8 @@ public class StudentHomeworkPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_homework_page);
-
+        setBinding();
+        setContentView(binding.getRoot());
 
         TextView questionNameTextView = findViewById(R.id.textViewQuestionName);
         TextView questionTextTextView = findViewById(R.id.textViewQuestionText);
