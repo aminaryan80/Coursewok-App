@@ -24,7 +24,7 @@
         <TextView
             android:id="@+id/idStudentName"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:textColor="@color/black"
             android:textSize="@dimen/course_name_size" />
 

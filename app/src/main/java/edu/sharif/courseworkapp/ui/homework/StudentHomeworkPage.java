@@ -60,9 +60,11 @@ public class StudentHomeworkPage extends AppCompatActivity {
             } else {
                 answer = new Answer(getUsername(), getHomeworkId(), answerT);
             }
+            answer.SetGrade("NG");
             latestAnswerTextView.setText("last submitted answer:\n" + answer.getAnswer());
             saveAnswer(answer);
             toSubmitAnswerTextTextView.setText("");
+            gradeTextView.setText("grade:\nnot graded.");
         });
 
     }

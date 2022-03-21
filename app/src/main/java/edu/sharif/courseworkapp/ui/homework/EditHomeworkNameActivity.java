@@ -37,8 +37,8 @@ public class EditHomeworkNameActivity extends AppCompatActivity {
 
     private void editHomeworkName(String newName) {
         String username = getUsername();
-        Homework oldHomework = Homework.getHomeworkById(getHomeworkId());
-        List<Homework> homeworks = Homework.getCourseHomeworks(oldHomework.getCourseId());
+        Homework homeworkToEdit = Homework.getHomeworkById(getHomeworkId());
+        List<Homework> homeworks = Homework.getCourseHomeworks(homeworkToEdit.getCourseId());
         for (Homework homework : homeworks) {
             if (homework.getName().equals(newName)) {
                 Toast.makeText(EditHomeworkNameActivity.this,
@@ -46,8 +46,8 @@ public class EditHomeworkNameActivity extends AppCompatActivity {
                 return;
             }
         }
-        Homework editedHomework = new Homework(oldHomework.getId(), newName, oldHomework.getCourseId(), oldHomework.getQuestion(), oldHomework.getImage());
-        saveHomework(editedHomework);
+        homeworkToEdit.SetName(newName);
+        saveHomework(homeworkToEdit);
         finish();
     }
 

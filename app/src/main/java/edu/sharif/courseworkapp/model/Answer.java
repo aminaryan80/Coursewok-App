@@ -61,7 +61,7 @@ public class Answer {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void SetGrade(String grade) {
         this.grade = grade;
     }
 
