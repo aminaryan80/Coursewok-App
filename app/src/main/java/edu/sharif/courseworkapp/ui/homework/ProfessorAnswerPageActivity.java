@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,13 +14,12 @@ import edu.sharif.courseworkapp.model.Answer;
 import edu.sharif.courseworkapp.model.Homework;
 import edu.sharif.courseworkapp.model.user.User;
 
-public class ProfessorAnswerPage extends AppCompatActivity {
+public class ProfessorAnswerPageActivity extends AppCompatActivity {
     private ActivityProfessorAnswerPageBinding binding;
 
     private void setBinding() {
         binding = ActivityProfessorAnswerPageBinding.inflate(getLayoutInflater());
     }
-
 
     protected String getUsername() {
         return getIntent().getStringExtra("username");
@@ -29,6 +29,13 @@ public class ProfessorAnswerPage extends AppCompatActivity {
         return getIntent().getStringExtra("answerId");
     }
 
+    private void handleImages() {
+        Answer answer = Answer.getAnswerById(getAnswerId());
+        assert answer != null;
+        int image = answer.getHomework().getImage();
+        binding.idHomeworkImage.setImageResource(image);
+        binding.idStudentImage.setImageResource(answer.getImage());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +51,15 @@ public class ProfessorAnswerPage extends AppCompatActivity {
         TextView toSubmitGradeTextView = findViewById(R.id.editTextGrade);
 
         setQA(homeworkNameTextView, homeworkQuestionTextView, lastGradeTextView, submittedAnswerTextView, studentNameTextView);
+        handleImages();
 
         Button gradeButton = findViewById(R.id.grade_button);
         gradeButton.setOnClickListener(view -> {
             String gradeT = toSubmitGradeTextView.getText().toString();
+            if (gradeT.isEmpty()) {
+                handleEmptyInput();
+                return;
+            }
             Answer answer = Answer.getAnswerById(getAnswerId());
             answer.SetGrade(gradeT);
             saveAnswer(answer);
@@ -55,7 +67,13 @@ public class ProfessorAnswerPage extends AppCompatActivity {
             toSubmitGradeTextView.setText("");
             finish();
         });
+    }
 
+    private void handleEmptyInput() {
+        Toast.makeText(
+                ProfessorAnswerPageActivity.this,
+                "Set grade first!",
+                Toast.LENGTH_SHORT).show();
     }
 
     private void saveAnswer(Answer answer) {
@@ -71,11 +89,11 @@ public class ProfessorAnswerPage extends AppCompatActivity {
         homeworkNameTextView.setText(homework.getName());
         homeworkQuestionTextView.setText(homework.getQuestion());
         if (answer.getGrade().equals("NG")) {
-            lastGradeTextView.setText("grade:\nnot graded.");
+            lastGradeTextView.setText("not graded");
         } else {
-            lastGradeTextView.setText("grade:\n" + answer.getGrade());
+            lastGradeTextView.setText(answer.getGrade());
         }
-        submittedAnswerTextView.setText("submitted answer:\n" + answer.getAnswer());
+        submittedAnswerTextView.setText(answer.getAnswer());
         studentNameTextView.setText(User.getUserByUsername(answer.getStudentId()).getDisplayName());
     }
 

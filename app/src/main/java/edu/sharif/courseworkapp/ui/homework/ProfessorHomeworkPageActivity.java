@@ -9,7 +9,6 @@ import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +26,7 @@ import edu.sharif.courseworkapp.model.Answer;
 import edu.sharif.courseworkapp.model.Homework;
 import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
-public class ProfessorHomeworkPage extends AppCompatActivity {
+public class ProfessorHomeworkPageActivity extends AppCompatActivity {
     protected RecyclerViewProfessorHomeworkAnswersListAdapter homeworkAnswerListAdapter;
     private ActivityProfessorHomeworkPageBinding binding;
     protected List<Answer> answerList = new ArrayList<>();
@@ -56,8 +55,6 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
     }
 
     private void handleToolbar() {
-        Toolbar toolbar = binding.toolbar;
-        //setSupportActionBar(toolbar);
         CollapsingToolbarLayout collToolbar = binding.toolbarLayout;
 
         Homework homework = Homework.getHomeworkById(getHomeworkId());
@@ -76,9 +73,9 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
         populate();
     }
 
-    protected LinearLayoutManager getVerticalLayoutManager() {
+    private LinearLayoutManager getVerticalLayoutManager() {
         return new LinearLayoutManager(
-                ProfessorHomeworkPage.this,
+                ProfessorHomeworkPageActivity.this,
                 LinearLayoutManager.VERTICAL,
                 false
         );
@@ -87,14 +84,14 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
     protected void addDivider(RecyclerView answersRecyclerView) {
         answersRecyclerView.addItemDecoration(
                 new DividerItemDecoration(
-                        ProfessorHomeworkPage.this,
+                        ProfessorHomeworkPageActivity.this,
                         LinearLayoutManager.VERTICAL
                 )
         );
     }
 
     private void goToEditHomeworkName() {
-        Intent intent = new Intent(ProfessorHomeworkPage.this, EditHomeworkNameActivity.class);
+        Intent intent = new Intent(ProfessorHomeworkPageActivity.this, EditHomeworkNameActivity.class);
         intent.putExtra("username", getUsername());
         intent.putExtra("homeworkId", getHomeworkId());
         startActivity(intent);
@@ -124,7 +121,7 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
-            Intent intent = new Intent(ProfessorHomeworkPage.this, LoginActivity.class);
+            Intent intent = new Intent(ProfessorHomeworkPageActivity.this, LoginActivity.class);
             startActivity(intent);
             return true;
         }

@@ -69,6 +69,16 @@ public class Answer {
         return image;
     }
 
+    public Course getCourse() {
+        Homework homework = Homework.getHomeworkById(homeworkId);
+        assert homework != null;
+        return homework.getCourse();
+    }
+
+    public Homework getHomework() {
+        return Homework.getHomeworkById(homeworkId);
+    }
+
     public static Answer getAnswerById(String answerId) {
         for (Answer answer : answers) {
             if (answer.id.equals(answerId)) {

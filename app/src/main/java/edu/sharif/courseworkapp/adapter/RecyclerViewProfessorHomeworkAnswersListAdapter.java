@@ -18,7 +18,7 @@ import java.util.List;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.model.Answer;
 import edu.sharif.courseworkapp.model.user.User;
-import edu.sharif.courseworkapp.ui.homework.ProfessorAnswerPage;
+import edu.sharif.courseworkapp.ui.homework.ProfessorAnswerPageActivity;
 
 
 public class RecyclerViewProfessorHomeworkAnswersListAdapter extends RecyclerView.Adapter<
@@ -95,7 +95,7 @@ public class RecyclerViewProfessorHomeworkAnswersListAdapter extends RecyclerVie
 
     private void handleOnClickItem(int position) {
         Answer answer = answerList.get(position);
-        Intent intent = new Intent(context, ProfessorAnswerPage.class);
+        Intent intent = new Intent(context, ProfessorAnswerPageActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("username", username);
         intent.putExtra("answerId", answer.getId());

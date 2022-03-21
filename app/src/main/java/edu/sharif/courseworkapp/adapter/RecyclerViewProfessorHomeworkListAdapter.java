@@ -9,8 +9,8 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.model.Homework;
 import edu.sharif.courseworkapp.model.user.User;
-import edu.sharif.courseworkapp.ui.homework.ProfessorHomeworkPage;
-import edu.sharif.courseworkapp.ui.homework.StudentHomeworkPage;
+import edu.sharif.courseworkapp.ui.homework.ProfessorHomeworkPageActivity;
+import edu.sharif.courseworkapp.ui.homework.StudentHomeworkPageActivity;
 
 public class RecyclerViewProfessorHomeworkListAdapter extends RecyclerViewHomeworkListAdapter {
     public RecyclerViewProfessorHomeworkListAdapter(List<Homework> homeworkList, Context context, String username, String courseId) {
@@ -34,9 +34,9 @@ public class RecyclerViewProfessorHomeworkListAdapter extends RecyclerViewHomewo
         User user = User.getUserByUsername(username);
         assert user != null;
         if (user.isStudent()) {
-            intent = new Intent(context, StudentHomeworkPage.class);
+            intent = new Intent(context, StudentHomeworkPageActivity.class);
         } else {
-            intent = new Intent(context, ProfessorHomeworkPage.class);
+            intent = new Intent(context, ProfessorHomeworkPageActivity.class);
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("username", username);

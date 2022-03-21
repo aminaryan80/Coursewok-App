@@ -33,6 +33,10 @@ public class CreateNewCourseActivity extends AppCompatActivity {
     private void createNewCourse(String courseName) {
         String username = getUsername();
         List<Course> courses = Course.getProfessorCourses(username);
+        if (courseName.isEmpty()) {
+            handleEmptyInput();
+            return;
+        }
         for (Course course : courses) {
             if (course.getName().equals(courseName)) {
                 Toast.makeText(CreateNewCourseActivity.this,
@@ -43,6 +47,13 @@ public class CreateNewCourseActivity extends AppCompatActivity {
         Course newCourse = new Course(courseName, username);
         saveCourse(newCourse);
         finish();
+    }
+
+    private void handleEmptyInput() {
+        Toast.makeText(
+                CreateNewCourseActivity.this,
+                "Course name can't be empty!",
+                Toast.LENGTH_SHORT).show();
     }
 
     private void saveCourse(Course course) {
