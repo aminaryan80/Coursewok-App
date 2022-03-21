@@ -18,7 +18,7 @@ import edu.sharif.courseworkapp.databinding.ActivityProfessorCoursePageBinding;
 import edu.sharif.courseworkapp.model.user.Professor;
 import edu.sharif.courseworkapp.model.user.User;
 
-public class ProfessorCoursePage extends UserCoursePage {
+public class ProfessorCoursePageActivity extends UserCoursePageActivity {
     private ActivityProfessorCoursePageBinding binding;
 
     private void setBinding() {
@@ -30,7 +30,6 @@ public class ProfessorCoursePage extends UserCoursePage {
         fab.setOnClickListener(view -> goToCreateNewHomework());
     }
 
-    // TODO: use this KARANEH
     @Override
     protected RecyclerViewHomeworkListAdapter getHomeworkListAdapter() {
         return new RecyclerViewProfessorHomeworkListAdapter(
@@ -60,7 +59,7 @@ public class ProfessorCoursePage extends UserCoursePage {
     }
 
     private void goToCreateNewHomework() {
-        Intent intent = new Intent(ProfessorCoursePage.this, CreateNewHomeworkActivity.class);
+        Intent intent = new Intent(ProfessorCoursePageActivity.this, CreateNewHomeworkActivity.class);
         intent.putExtra("courseId", getCourseId());
         startActivity(intent);
     }

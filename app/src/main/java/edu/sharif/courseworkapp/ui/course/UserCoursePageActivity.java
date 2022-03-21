@@ -16,11 +16,10 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewHomeworkListAdapter;
-import edu.sharif.courseworkapp.adapter.RecyclerViewProfessorHomeworkListAdapter;
 import edu.sharif.courseworkapp.model.Homework;
 import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
-public abstract class UserCoursePage extends AppCompatActivity {
+public abstract class UserCoursePageActivity extends AppCompatActivity {
     protected RecyclerViewHomeworkListAdapter homeworkListAdapter;
     protected List<Homework> homeworkList = new ArrayList<>();
     private final List<Homework> allHomeworkList = new ArrayList<>();
@@ -41,7 +40,7 @@ public abstract class UserCoursePage extends AppCompatActivity {
 
     protected LinearLayoutManager getVerticalLayoutManager() {
         return new LinearLayoutManager(
-                UserCoursePage.this,
+                UserCoursePageActivity.this,
                 LinearLayoutManager.VERTICAL,
                 false
         );
@@ -50,7 +49,7 @@ public abstract class UserCoursePage extends AppCompatActivity {
     protected void addDivider(RecyclerView courseRecyclerView) {
         courseRecyclerView.addItemDecoration(
                 new DividerItemDecoration(
-                        UserCoursePage.this,
+                        UserCoursePageActivity.this,
                         LinearLayoutManager.VERTICAL
                 )
         );
@@ -103,7 +102,7 @@ public abstract class UserCoursePage extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
-            Intent intent = new Intent(UserCoursePage.this, LoginActivity.class);
+            Intent intent = new Intent(UserCoursePageActivity.this, LoginActivity.class);
             startActivity(intent);
             return true;
         }

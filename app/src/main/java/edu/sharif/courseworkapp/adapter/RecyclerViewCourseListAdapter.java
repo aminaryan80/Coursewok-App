@@ -18,8 +18,8 @@ import java.util.List;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.model.Course;
 import edu.sharif.courseworkapp.model.user.User;
-import edu.sharif.courseworkapp.ui.course.ProfessorCoursePage;
-import edu.sharif.courseworkapp.ui.course.StudentCoursePage;
+import edu.sharif.courseworkapp.ui.course.ProfessorCoursePageActivity;
+import edu.sharif.courseworkapp.ui.course.StudentCoursePageActivity;
 
 public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         RecyclerViewCourseListAdapter.CourseViewHolder> {
@@ -105,9 +105,9 @@ public class RecyclerViewCourseListAdapter extends RecyclerView.Adapter<
         User user = User.getUserByUsername(username);
         assert user != null;
         if (user.isStudent()) {
-            intent = new Intent(context, StudentCoursePage.class);
+            intent = new Intent(context, StudentCoursePageActivity.class);
         } else {
-            intent = new Intent(context, ProfessorCoursePage.class);
+            intent = new Intent(context, ProfessorCoursePageActivity.class);
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("username", username);

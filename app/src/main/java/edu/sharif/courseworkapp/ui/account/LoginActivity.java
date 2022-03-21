@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 String error_message = "Username doesn't exist or password is wrong";
                 Toast.makeText(LoginActivity.this, error_message, Toast.LENGTH_SHORT).show();
             } else {
-                String success_message = "User logged in";
+                String success_message = usernameTextView.getText().toString() + " logged in";
                 Toast.makeText(LoginActivity.this, success_message, Toast.LENGTH_SHORT).show();
                 login(user);
             }

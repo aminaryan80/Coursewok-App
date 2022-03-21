@@ -7,6 +7,12 @@
     <dimen name="course_name_size">22sp</dimen>
     <dimen name="course_desc_size">16sp</dimen>
     <dimen name="homework_item_margin">16dp</dimen>
+    <dimen name="homework_item_padding">16dp</dimen>
     <dimen name="homework_name_size">24sp</dimen>
     <dimen name="homework_desc_size">18sp</dimen>
+    <dimen name="homework_name_hw_page">32sp</dimen>
+    <dimen name="student_name_hw_page">24sp</dimen>
+    <dimen name="grade_hw_page">24sp</dimen>
+    <dimen name="answer_hw_page">22sp</dimen>
+    <dimen name="question_hw_page">22sp</dimen>
 </resources>

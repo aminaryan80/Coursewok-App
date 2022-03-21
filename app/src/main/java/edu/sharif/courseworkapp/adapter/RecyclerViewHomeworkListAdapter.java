@@ -2,13 +2,13 @@ package edu.sharif.courseworkapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +17,9 @@ import java.util.List;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.model.Homework;
+import edu.sharif.courseworkapp.model.user.User;
+import edu.sharif.courseworkapp.ui.homework.ProfessorHomeworkPageActivity;
+import edu.sharif.courseworkapp.ui.homework.StudentHomeworkPageActivity;
 
 public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
         RecyclerViewHomeworkListAdapter.HomeworkViewHolder> {
@@ -76,11 +79,24 @@ public class RecyclerViewHomeworkListAdapter extends RecyclerView.Adapter<
 
         holder.getHomeworkImageView().setImageResource(homework.getImage());
 
-        // TODO: open homework page
-        holder.getHomeworkItem().setOnClickListener(view -> {
-            String productName = homeworkList.get(position).getName();
-            Toast.makeText(context, productName + " is selected", Toast.LENGTH_SHORT).show();
-        });
+        holder.getHomeworkItem().setOnClickListener(view -> handleOnClickItem(position));
+    }
+
+    private void handleOnClickItem(int position) {
+        Homework homework = homeworkList.get(position);
+
+        Intent intent;
+        User user = User.getUserByUsername(username);
+        assert user != null;
+        if (user.isStudent()) {
+            intent = new Intent(context, StudentHomeworkPageActivity.class);
+        } else {
+            intent = new Intent(context, ProfessorHomeworkPageActivity.class);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("username", username);
+        intent.putExtra("homeworkId", homework.getId());
+        context.startActivity(intent);
     }
 
     @Override
