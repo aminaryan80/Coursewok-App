@@ -101,6 +101,8 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
         intent.putExtra("username", getUsername());
         intent.putExtra("homeworkId", getHomeworkId());
         startActivity(intent);
+        Homework homework = Homework.getHomeworkById(getHomeworkId());
+        binding.toolbarLayout.setTitle(homework.getName());
     }
 
     @Override
