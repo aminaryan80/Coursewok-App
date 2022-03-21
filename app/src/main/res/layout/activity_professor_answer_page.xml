@@ -14,19 +14,23 @@
 
     <TextView
         android:id="@+id/textViewLastGrade"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/hw_grade"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSubmittedAnswer" />
 
     <EditText
         android:id="@+id/editTextGrade"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/hw_grade"
         android:inputType="text"
@@ -44,50 +48,58 @@
         android:text="@string/hw_grade"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextGrade"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/textViewHomeworkQuestion"
-        android:layout_width="305dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:text="@string/hw_question"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gray"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHomeworkName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStudentName" />
 
     <TextView
         android:id="@+id/textViewHomeworkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="34sp"
+        android:textSize="48sp"
+        android:text="HW"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewSubmittedAnswer"
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
+        android:text="answer"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStudentName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHomeworkQuestion" />
 
     <TextView
         android:id="@+id/textViewStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"
+        android:text="name"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHomeworkQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHomeworkName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

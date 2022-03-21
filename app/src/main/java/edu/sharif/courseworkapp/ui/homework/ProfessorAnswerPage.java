@@ -53,6 +53,7 @@ public class ProfessorAnswerPage extends AppCompatActivity {
             saveAnswer(answer);
             lastGradeTextView.setText("grade:\n" + answer.getGrade());
             toSubmitGradeTextView.setText("");
+            finish();
         });
 
     }

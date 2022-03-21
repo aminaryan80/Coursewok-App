@@ -142,4 +142,11 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
     private List<Answer> populateHomeworkAnswerList() {
         return Answer.getHomeworkAnswers(getHomeworkId());
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Homework homework = Homework.getHomeworkById(getHomeworkId());
+        binding.toolbarLayout.setTitle(homework.getName());
+    }
 }

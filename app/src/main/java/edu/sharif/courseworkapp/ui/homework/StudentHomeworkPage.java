@@ -11,6 +11,7 @@ import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityStudentHomeworkPageBinding;
 import edu.sharif.courseworkapp.model.Answer;
 import edu.sharif.courseworkapp.model.Homework;
+
 public class StudentHomeworkPage extends AppCompatActivity {
     private ActivityStudentHomeworkPageBinding binding;
 
@@ -85,5 +86,4 @@ public class StudentHomeworkPage extends AppCompatActivity {
             latestAnswerTextView.setText("last submitted answer:\nhaven't submitted anything yet.");
         }
     }
-
 }
