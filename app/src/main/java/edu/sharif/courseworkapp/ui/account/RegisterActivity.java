@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.controller.RegisterHandler;
 import edu.sharif.courseworkapp.model.user.User;
+import edu.sharif.courseworkapp.ui.homework.ProfessorAnswerPageActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -50,8 +51,10 @@ public class RegisterActivity extends AppCompatActivity {
             RadioButton radioButton = findViewById(checkedId);
             String string = radioButton.getText().toString();
             if (string.equals("Student")) {
+                extraTextView.setText(null);
                 extraTextView.setHint(R.string.student_number);
             } else {
+                extraTextView.setText(null);
                 extraTextView.setHint(R.string.university);
             }
         });
@@ -60,6 +63,10 @@ public class RegisterActivity extends AppCompatActivity {
             int selectedId = radio_group.getCheckedRadioButtonId();
             RadioButton radioButton = radio_group.findViewById(selectedId);
             boolean isStudent = radioButton.getText().toString().equals("Student");
+            if (usernameTextView.getText().toString().isEmpty() || passwordTextView.getText().toString().isEmpty()) {
+                handleEmptyInput();
+                return;
+            }
             RegisterHandler registerHandler = new RegisterHandler(
                     usernameTextView.getText().toString(),
                     passwordTextView.getText().toString(),
@@ -86,6 +93,13 @@ public class RegisterActivity extends AppCompatActivity {
         ));
     }
 
+    private void handleEmptyInput() {
+        Toast.makeText(
+                RegisterActivity.this,
+                "Username or password can't be empty!",
+                Toast.LENGTH_SHORT).show();
+    }
+
     private void saveUser(User user) {
         SharedPreferences.Editor sharedPreferencesEditor;
         String type = user.getType();
@@ -96,7 +110,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         sharedPreferencesEditor.putString(user.getUsername(), user.encode());
         sharedPreferencesEditor.apply();
-
     }
 
     private void goToLogin(String username, String password) {

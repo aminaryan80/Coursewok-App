@@ -26,19 +26,19 @@
         <activity android:name=".ui.panel.ProfessorPanelActivity" />
         <activity android:name=".ui.panel.StudentPanelActivity" />
         <activity
-            android:name=".ui.course.ProfessorCoursePage"
+            android:name=".ui.course.ProfessorCoursePageActivity"
             android:theme="@style/Theme.CourseworkApp.NoActionBar" />
         <activity
-            android:name=".ui.course.StudentCoursePage"
+            android:name=".ui.course.StudentCoursePageActivity"
             android:theme="@style/Theme.CourseworkApp.NoActionBar" />
         <activity android:name=".ui.panel.StudentJoinCourseActivity" />
         <activity android:name=".ui.course.CreateNewHomeworkActivity" />
-        <activity android:name=".ui.homework.StudentHomeworkPage" />
+        <activity android:name=".ui.homework.StudentHomeworkPageActivity" />
         <activity
-            android:name=".ui.homework.ProfessorHomeworkPage"
+            android:name=".ui.homework.ProfessorHomeworkPageActivity"
             android:theme="@style/Theme.CourseworkApp.NoActionBar"/>
         <activity android:name=".ui.homework.EditHomeworkNameActivity" />
-        <activity android:name=".ui.homework.ProfessorAnswerPage" />
+        <activity android:name=".ui.homework.ProfessorAnswerPageActivity" />
     </application>
 
 </manifest>

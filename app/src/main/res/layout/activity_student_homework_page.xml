@@ -10,34 +10,105 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.homework.StudentHomeworkPage">
+    tools:context=".ui.homework.StudentHomeworkPageActivity">
+
+    <LinearLayout
+        android:id="@+id/idHomeworkLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/idHomeworkImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/homework_item_margin"
+            android:layout_marginTop="@dimen/homework_item_margin"
+            android:contentDescription="@string/course_img"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textViewHomeworkName"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/homework_item_margin"
+            android:layout_marginTop="@dimen/homework_item_margin"
+            android:layout_weight="0.7"
+            android:gravity="center_vertical"
+            android:text="HW"
+            android:textColor="@color/black"
+            android:textSize="@dimen/homework_name_hw_page" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/idGradeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/homework_item_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idHomeworkLayout">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/course_item_margin"
+            android:layout_marginTop="@dimen/course_item_margin"
+            android:contentDescription="@string/course_img"
+            app:srcCompat="@drawable/grade" />
+
+        <TextView
+            android:id="@+id/textViewLastGrade"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/course_item_margin"
+            android:layout_marginTop="@dimen/course_item_margin"
+            android:gravity="center_vertical"
+            android:text="grade"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/grade_hw_page" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/idDivider"
+        style="@style/Divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idGradeLayout" />
 
     <TextView
-        android:id="@+id/textViewGrade"
-        android:layout_width="120dp"
+        android:id="@+id/textViewHomeworkQuestion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray"
-        android:text="grade"
-        android:layout_marginTop="80dp"
+        android:paddingStart="@dimen/homework_item_padding"
+        android:layout_marginTop="32dp"
+        android:text="@string/hw_question"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/question_hw_page"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewLastSubmittedAnswer"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionText" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idGradeLayout" />
 
     <EditText
         android:id="@+id/editTextAnswer"
+        android:lines="2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:paddingBottom="@dimen/homework_item_padding"
+        android:paddingStart="@dimen/homework_item_padding"
+        android:background="@drawable/answer_back"
         android:hint="@string/hw_answer"
-        android:inputType="text"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/answer_hw_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLastSubmittedAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHomeworkQuestion" />
 
     <Button
         android:id="@+id/submit_button"
@@ -47,50 +118,7 @@
         android:text="@string/hw_submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAnswer"
         app:layout_constraintVertical_bias="0.1" />
-
-    <TextView
-        android:id="@+id/textViewQuestionText"
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/hw_question"
-        android:textColor="@color/dark_gray"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionName" />
-
-    <TextView
-        android:id="@+id/textViewQuestionName"
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:text="HW"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        android:textSize="34sp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewLastSubmittedAnswer"
-        android:layout_width="220dp"
-        android:text="last answer"
-        android:textColor="@color/gray"
-        android:textAlignment="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionText" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

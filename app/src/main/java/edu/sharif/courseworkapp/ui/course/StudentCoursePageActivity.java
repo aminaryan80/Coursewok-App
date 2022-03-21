@@ -13,7 +13,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import edu.sharif.courseworkapp.databinding.ActivityStudentCoursePageBinding;
 import edu.sharif.courseworkapp.model.Course;
 
-public class StudentCoursePage extends UserCoursePage {
+public class StudentCoursePageActivity extends UserCoursePageActivity {
     private ActivityStudentCoursePageBinding binding;
 
     private void setBinding() {
