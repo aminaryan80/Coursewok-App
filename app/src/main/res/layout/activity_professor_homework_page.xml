@@ -59,8 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_margin"
         android:contentDescription="@string/hw_edit_name"
-        android:src="@drawable/edit"
-        app:backgroundTint="#00FFFFFF"
+        app:srcCompat="@android:drawable/ic_menu_edit"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 

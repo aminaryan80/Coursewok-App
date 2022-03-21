@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,17 +20,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.sharif.courseworkapp.adapter.RecyclerViewHomeworkListAdapter;
+import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.adapter.RecyclerViewProfessorHomeworkAnswersListAdapter;
-import edu.sharif.courseworkapp.adapter.RecyclerViewProfessorHomeworkListAdapter;
-import edu.sharif.courseworkapp.databinding.ActivityProfessorCoursePageBinding;
 import edu.sharif.courseworkapp.databinding.ActivityProfessorHomeworkPageBinding;
 import edu.sharif.courseworkapp.model.Answer;
 import edu.sharif.courseworkapp.model.Homework;
-import edu.sharif.courseworkapp.model.user.Professor;
-import edu.sharif.courseworkapp.model.user.User;
-import edu.sharif.courseworkapp.ui.course.CreateNewHomeworkActivity;
-import edu.sharif.courseworkapp.ui.course.UserCoursePage;
+import edu.sharif.courseworkapp.ui.account.LoginActivity;
 
 public class ProfessorHomeworkPage extends AppCompatActivity {
     protected RecyclerViewProfessorHomeworkAnswersListAdapter homeworkAnswerListAdapter;
@@ -110,10 +107,28 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setBinding();
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
 
         handleFab();
         handleToolbar();
         handleRecyclerView();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_homework_page, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            Intent intent = new Intent(ProfessorHomeworkPage.this, LoginActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressLint("NotifyDataSetChanged")

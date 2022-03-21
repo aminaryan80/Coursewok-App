@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import edu.sharif.courseworkapp.R;
 import edu.sharif.courseworkapp.databinding.ActivityProfessorAnswerPageBinding;
-import edu.sharif.courseworkapp.databinding.ActivityStudentHomeworkPageBinding;
 import edu.sharif.courseworkapp.model.Answer;
 import edu.sharif.courseworkapp.model.Homework;
 import edu.sharif.courseworkapp.model.user.User;

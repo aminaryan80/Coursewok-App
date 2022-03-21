@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 import edu.sharif.courseworkapp.R;
-import edu.sharif.courseworkapp.model.Course;
 import edu.sharif.courseworkapp.model.Homework;
 
 public class EditHomeworkNameActivity extends AppCompatActivity {

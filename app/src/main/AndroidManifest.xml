@@ -34,7 +34,9 @@
         <activity android:name=".ui.panel.StudentJoinCourseActivity" />
         <activity android:name=".ui.course.CreateNewHomeworkActivity" />
         <activity android:name=".ui.homework.StudentHomeworkPage" />
-        <activity android:name=".ui.homework.ProfessorHomeworkPage" />
+        <activity
+            android:name=".ui.homework.ProfessorHomeworkPage"
+            android:theme="@style/Theme.CourseworkApp.NoActionBar"/>
         <activity android:name=".ui.homework.EditHomeworkNameActivity" />
         <activity android:name=".ui.homework.ProfessorAnswerPage" />
     </application>
