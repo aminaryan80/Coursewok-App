@@ -35,6 +35,7 @@
         <activity android:name=".ui.course.CreateNewHomeworkActivity" />
         <activity android:name=".ui.homework.StudentHomeworkPage" />
         <activity android:name=".ui.homework.ProfessorHomeworkPage" />
+        <activity android:name=".ui.homework.EditHomeworkNameActivity" />
     </application>
 
 </manifest>

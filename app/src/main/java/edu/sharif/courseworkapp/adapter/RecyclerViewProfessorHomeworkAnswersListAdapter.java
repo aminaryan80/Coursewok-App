@@ -84,15 +84,19 @@ public class RecyclerViewProfessorHomeworkAnswersListAdapter extends RecyclerVie
     public void onBindViewHolder(@NonNull AnswerViewHolder holder, int position) {
         Answer answer = answerList.get(position);
         holder.getNameTextView().setText(User.getUserByUsername(answer.getStudentId()).getDisplayName());
-
+        String answerT = answer.getAnswer();
+        if (answerT.length() > 15) {
+            holder.getAnswerPreviewTextView().setText(answerT.substring(0, 10) + "...");
+        } else {
+            holder.getAnswerPreviewTextView().setText(answerT);
+        }
         holder.getAnswerImageView().setImageResource(answer.getImage());
-
         holder.getAnswerItem().setOnClickListener(view -> handleOnClickItem(position));
     }
 
     private void handleOnClickItem(int position) {
         Answer answer = answerList.get(position);
-
+        //TODO
         Intent intent = new Intent(context, ProfessorHomeworkPage.class);;
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("username", username);

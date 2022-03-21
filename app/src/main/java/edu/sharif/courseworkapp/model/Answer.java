@@ -32,7 +32,7 @@ public class Answer {
         this.studentId = studentId;
         this.homeworkId = homeworkId;
         this.answer = answer;
-        this.grade = "";
+        this.grade = "NG";
         this.image = AnswerImageUtils.getRandomImage();
         answers.add(this);
     }

@@ -60,7 +60,7 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
 
     private void handleToolbar() {
         Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         CollapsingToolbarLayout collToolbar = binding.toolbarLayout;
 
         Homework homework = Homework.getHomeworkById(getHomeworkId());
@@ -98,6 +98,7 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
 
     private void goToEditHomeworkName() {
         Intent intent = new Intent(ProfessorHomeworkPage.this, EditHomeworkNameActivity.class);
+        intent.putExtra("username", getUsername());
         intent.putExtra("homeworkId", getHomeworkId());
         startActivity(intent);
     }
@@ -120,7 +121,7 @@ public class ProfessorHomeworkPage extends AppCompatActivity {
         answerList.addAll(answers);
         homeworkAnswerListAdapter.notifyDataSetChanged();
     }
-    
+
     private List<Answer> populateHomeworkAnswerList() {
         return Answer.getHomeworkAnswers(getHomeworkId());
     }

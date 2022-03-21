@@ -57,13 +57,12 @@ public class StudentHomeworkPage extends AppCompatActivity {
             if (Answer.checkExists(getUsername(), getHomeworkId())) {
                 answer = Answer.getUniqueAnswer(getUsername(), getHomeworkId());
                 answer.setAnswer(answerT);
-                toSubmitAnswerTextTextView.setText("");
-                latestAnswerTextView.setText("last submitted answer:\n" + answer.getAnswer());
             } else {
                 answer = new Answer(getUsername(), getHomeworkId(), answerT);
-                latestAnswerTextView.setText("last submitted answer:\nhaven't submitted anything yet.");
             }
+            latestAnswerTextView.setText("last submitted answer:\n" + answer.getAnswer());
             saveAnswer(answer);
+            toSubmitAnswerTextTextView.setText("");
         });
 
     }
@@ -80,7 +79,7 @@ public class StudentHomeworkPage extends AppCompatActivity {
         questionTextTextView.setText(homework.getQuestion());
         if (Answer.checkExists(getUsername(), getHomeworkId())) {
             Answer answer = Answer.getUniqueAnswer(getUsername(), getHomeworkId());
-            if (answer.getGrade() == "") {
+            if (answer.getGrade().equals("NG")) {
                 gradeTextView.setText("grade:\nnot graded.");
             } else {
                 gradeTextView.setText("grade:\n" + answer.getGrade());
@@ -92,9 +91,4 @@ public class StudentHomeworkPage extends AppCompatActivity {
         }
     }
 
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        this.finishAffinity();
-    }
 }
